@@ -57,18 +57,6 @@ public class NanopubImpl implements Nanopub, Serializable {
     private List<String> nsPrefixes = new ArrayList<>();
     private Map<String,String> ns = new HashMap<>();
 
-    public NanopubImpl(Collection<Statement> statements, List<String> nsPrefixes, Map<String,String> ns) throws MalformedNanopubException {
-        this.statements.addAll(statements);
-        this.nsPrefixes.addAll(nsPrefixes);
-        this.ns.putAll(ns);
-        init();
-    }
-
-    public NanopubImpl(Collection<Statement> statements) throws MalformedNanopubException {
-        this.statements.addAll(statements);
-        init();
-    }
-
     private static final String nanopubViaSPARQLQuery =
             "prefix np: <http://www.nanopub.org/nschema#> " +
                     "prefix rdfg: <http://www.w3.org/2004/03/trix/rdfg-1/> " +
@@ -87,6 +75,19 @@ public class NanopubImpl implements Nanopub, Serializable {
                     "  } " +
                     "  graph ?G { ?S ?P ?O } " +
                     "}";
+
+    /***** Constructors ******/
+    public NanopubImpl(Collection<Statement> statements, List<String> nsPrefixes, Map<String,String> ns) throws MalformedNanopubException {
+        this.statements.addAll(statements);
+        this.nsPrefixes.addAll(nsPrefixes);
+        this.ns.putAll(ns);
+        init();
+    }
+
+    public NanopubImpl(Collection<Statement> statements) throws MalformedNanopubException {
+        this.statements.addAll(statements);
+        init();
+    }
 
     public NanopubImpl(Repository repo, URI nanopubUri)
             throws MalformedNanopubException, RepositoryException {
@@ -168,6 +169,27 @@ public class NanopubImpl implements Nanopub, Serializable {
             throws MalformedNanopubException, OpenRDFException, IOException {
         this(new ByteArrayInputStream(utf8.getBytes("UTF-8")), format);
     }
+    /***** End of Constructors ******/
+
+    private void init() throws MalformedNanopubException {
+        collectNanopubUri(statements);
+        if (nanopubUri == null || headUri == null) {
+            throw new MalformedNanopubException("No nanopub URI found");
+        }
+        collectGraphs(statements);
+        if (assertionUri == null) {
+            throw new MalformedNanopubException("No assertion URI found");
+        }
+        if (provenanceUri == null) {
+            throw new MalformedNanopubException("No provenance URI found");
+        }
+        if (pubinfoUri == null) {
+            throw new MalformedNanopubException("No publication info URI found");
+        }
+        collectSubGraphs(statements);
+        collectStatements(statements);
+    }
+
 
     private void readStatements(InputStream in, RDFFormat format)
             throws MalformedNanopubException, OpenRDFException, IOException {
@@ -193,25 +215,15 @@ public class NanopubImpl implements Nanopub, Serializable {
         }
     }
 
-    private void init() throws MalformedNanopubException {
-        collectNanopubUri(statements);
-        if (nanopubUri == null || headUri == null) {
-            throw new MalformedNanopubException("No nanopub URI found");
-        }
-        collectGraphs(statements);
-        if (assertionUri == null) {
-            throw new MalformedNanopubException("No assertion URI found");
-        }
-        if (provenanceUri == null) {
-            throw new MalformedNanopubException("No provenance URI found");
-        }
-        if (pubinfoUri == null) {
-            throw new MalformedNanopubException("No publication info URI found");
-        }
-        collectSubGraphs(statements);
-        collectStatements(statements);
-    }
-
+    /**
+     * Internal method that sets:
+     *    - the nanopubUri (the subject URI for the statement whose type is NANOPUB_TYPE_URI)
+     *    and
+     *    - the headUri (context given to all the statements).
+     *
+     * @param statements
+     * @throws MalformedNanopubException
+     */
     private void collectNanopubUri(Collection<Statement> statements) throws MalformedNanopubException {
         for (Statement st : statements) {
             if (st.getContext() == null) {
@@ -227,6 +239,13 @@ public class NanopubImpl implements Nanopub, Serializable {
         }
     }
 
+    /***
+     *
+     * Given a collection of RDF statements, it sets the assertionUri, provenanceUri and pubinfoUri.
+     *
+     * @param statements
+     * @throws MalformedNanopubException
+     */
     private void collectGraphs(Collection<Statement> statements) throws MalformedNanopubException {
         for (Statement st : statements) {
             if (st.getContext().equals(headUri) && st.getSubject().equals(nanopubUri)) {
