@@ -1,10 +1,14 @@
 package org.isatools.nanopub;
 
+import au.com.bytecode.opencsv.CSVReader;
 import org.nanopub.MalformedNanopubException;
 import org.nanopub.Nanopub;
 import org.nanopub.NanopubImpl;
 import org.openrdf.model.Statement;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -24,7 +28,24 @@ public class OntoMaton2Nanopub {
      *
      *
      */
-    private void readOntoMatonTemplate(){
+    private void readOntoMatonTemplate(String csvFilename){
+        try {
+            CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
+
+            String[] nextLine = null;
+
+
+            while ((nextLine = csvReader.readNext()) != null) {
+
+
+            }
+
+
+        }catch(FileNotFoundException fnfex){
+            fnfex.printStackTrace();
+        }catch(IOException ioex){
+            ioex.printStackTrace();
+        }
 
     }
 
@@ -40,9 +61,9 @@ public class OntoMaton2Nanopub {
      *
      * @throws MalformedNanopubException
      */
-    public Nanopub generateNanopub() throws MalformedNanopubException {
+    public Nanopub generateNanopub(String csvFilename) throws MalformedNanopubException {
 
-        readOntoMatonTemplate();
+        readOntoMatonTemplate(csvFilename);
 
         Collection<Statement> statementCollection = generateStatements();
         Nanopub nanopub = new NanopubImpl(statementCollection);
