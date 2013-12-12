@@ -90,7 +90,7 @@ public class NanoPubImplTest {
         statements.add(nanopub1Statement1);
         statements.add(nanopub1Statement2);
         statements.add(nanopub1Statement3);
-        //statements.add(nanopub1Statement4);
+        statements.add(nanopub1Statement4);
         statements.add(nameStatement);
 
         Nanopub nanopub1 = new NanopubImpl(statements);

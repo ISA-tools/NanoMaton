@@ -18,6 +18,11 @@ import java.util.Set;
  */
 public interface Nanopub {
 
+    //elements from the schema
+    public static final String ASSERTION = "Assertion";
+    public static final String SUPPORTING = "Supporting";
+    public static final String PROVENANCE = "Provenance";
+
     public static final URI NANOPUB_TYPE_URI = new URIImpl("http://www.nanopub.org/nschema#Nanopublication");
     public static final URI HAS_ASSERTION_URI = new URIImpl("http://www.nanopub.org/nschema#hasAssertion");
     public static final URI HAS_PROVENANCE_URI = new URIImpl("http://www.nanopub.org/nschema#hasProvenance");

@@ -191,6 +191,16 @@ public class NanopubImpl implements Nanopub, Serializable {
     }
 
 
+    /**
+     *
+     *
+     *
+     * @param in
+     * @param format
+     * @throws MalformedNanopubException
+     * @throws OpenRDFException
+     * @throws IOException
+     */
     private void readStatements(InputStream in, RDFFormat format)
             throws MalformedNanopubException, OpenRDFException, IOException {
         RDFParser p = Rio.createParser(format);
