@@ -3,6 +3,11 @@ package org.isatools;
 import org.isatools.nanopub.OntoMaton2Nanopub;
 import org.junit.Test;
 import org.nanopub.MalformedNanopubException;
+import org.nanopub.Nanopub;
+import org.openrdf.model.URI;
+import org.openrdf.model.ValueFactory;
+import org.openrdf.model.impl.ValueFactoryImpl;
+
 
 /**
  * Created by the ISATeam.
@@ -20,6 +25,12 @@ public class OntoMaton2NanopubTest {
         System.out.println("csv="+csv);
         String filepath = getClass().getResource(csv).getFile();
         OntoMaton2Nanopub ontoMaton2Nanopub = new OntoMaton2Nanopub();
-        ontoMaton2Nanopub.generateNanopub(filepath);
+
+        ValueFactory factory = ValueFactoryImpl.getInstance();
+        URI nanopubURI = factory.createURI("http://example.org/nanopub1");
+
+        Nanopub nanopub = ontoMaton2Nanopub.generateNanopub(filepath, nanopubURI);
+
+        System.out.println(nanopub.toString());
     }
 }

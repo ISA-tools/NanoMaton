@@ -28,15 +28,57 @@ public class OntoMaton2Nanopub {
 
    public OntoMaton2Nanopub(){}
 
+
+    /**
+     * Main method to use to generate a NanoPub from an OntoMaton template
+     *
+     * @param csvFilename
+     * @param nanopubURI
+     * @return
+     * @throws MalformedNanopubException
+     */
+    public Nanopub generateNanopub(String csvFilename, URI nanopubURI) throws MalformedNanopubException {
+
+
+        ValueFactory factory = ValueFactoryImpl.getInstance();
+
+        URI context = factory.createURI("http://example.org/contexts/graph1");
+
+        URI assertionGraphURI = factory.createURI("http://example.org/G1");
+
+        URI provenanceGraphURI = factory.createURI("http://example.org/G2");
+
+        URI pubInfoGraphURI = factory.createURI("http://example.org/G4");
+
+
+        Collection<Statement> statementCollection = generateStmtsFromOntoMatonTemplate(csvFilename, factory , nanopubURI, assertionGraphURI, provenanceGraphURI, pubInfoGraphURI);
+
+        Statement nanopub1Statement1 = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, context);
+        Statement nanopub1Statement2 = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, context);
+        Statement nanopub1Statement3 = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, context);
+        Statement nanopub1Statement4 = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, context);
+
+        statementCollection.add(nanopub1Statement1);
+        statementCollection.add(nanopub1Statement2);
+        statementCollection.add(nanopub1Statement3);
+        statementCollection.add(nanopub1Statement4);
+
+        Nanopub nanopub = new NanopubImpl(statementCollection);
+
+        return nanopub;
+    }
+
+
     /**
      *
      * Reads the OntoMaton template for creating nanopublications.
      *
      */
-    private  Collection<Statement>  generateStmtsFromOntoMatonTemplate(String csvFilename){
+    private  Collection<Statement>  generateStmtsFromOntoMatonTemplate(String csvFilename, ValueFactory factory, URI nanopubURI, URI assertionGraphURI, URI provenanceGraphURI, URI pubInfoGraphURI){
         Collection<Statement> statementCollection = new ArrayList<Statement>();
         try {
             CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
+            Statement stmt = null;
 
             String[] nextLine = null;
             while ((nextLine = csvReader.readNext()) != null) {
@@ -45,13 +87,20 @@ public class OntoMaton2Nanopub {
 
                     if (nextLine[0].equals(Nanopub.ASSERTION)){
 
-                        System.out.println("assertion" + nextLine[1]);
+                        stmt = factory.createStatement(factory.createURI(nextLine[1]), factory.createURI(nextLine[2]), factory.createURI(nextLine[3]), assertionGraphURI);
 
                     } else if (nextLine[0].equals(Nanopub.SUPPORTING)){
 
+                        stmt = factory.createStatement(factory.createURI(nextLine[1]), factory.createURI(nextLine[2]), factory.createURI(nextLine[3]), provenanceGraphURI);
+
                     } else if (nextLine[0].equals(Nanopub.PROVENANCE)){
 
+                        stmt =  factory.createStatement(factory.createURI(nextLine[1]), factory.createURI(nextLine[2]), factory.createURI(nextLine[3]), pubInfoGraphURI);
+
                     }
+
+                    if (stmt!=null)
+                        statementCollection.add(stmt);
 
                 }
 
@@ -69,37 +118,6 @@ public class OntoMaton2Nanopub {
 
 
 
-    /**
-     *
-     *
-     * @throws MalformedNanopubException
-     */
-    public Nanopub generateNanopub(String csvFilename) throws MalformedNanopubException {
-
-        Collection<Statement> statementCollection = generateStmtsFromOntoMatonTemplate(csvFilename);
-        Nanopub nanopub = new NanopubImpl(statementCollection);
-
-
-        ValueFactory factory = ValueFactoryImpl.getInstance();
-
-        URI context = factory.createURI("http://example.org/contexts/graph1");
-
-        URI nanopub1URI = factory.createURI("http://example.org/nanopub1");
-
-        URI assertionGraphURI = factory.createURI("http://example.org/G1");
-
-        URI provenanceGraphURI = factory.createURI("http://example.org/G2");
-
-        URI pubInfoGraphURI = factory.createURI("http://example.org/G4");
-
-        Statement nanopub1Statement1 = factory.createStatement(nanopub1URI, RDF.TYPE ,Nanopub.NANOPUB_TYPE_URI, context);
-        Statement nanopub1Statement2 = factory.createStatement(nanopub1URI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, context);
-        Statement nanopub1Statement3 = factory.createStatement(nanopub1URI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, context);
-        Statement nanopub1Statement4 = factory.createStatement(nanopub1URI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, context);
-
-
-        return nanopub;
-    }
 
 
 
