@@ -4,9 +4,12 @@ import org.isatools.nanopub.OntoMaton2Nanopub;
 import org.junit.Test;
 import org.nanopub.MalformedNanopubException;
 import org.nanopub.Nanopub;
+import org.nanopub.NanopubUtils;
 import org.openrdf.model.URI;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.model.impl.ValueFactoryImpl;
+import org.openrdf.rio.RDFFormat;
+import org.openrdf.rio.RDFHandlerException;
 
 
 /**
@@ -20,7 +23,7 @@ import org.openrdf.model.impl.ValueFactoryImpl;
 public class OntoMaton2NanopubTest {
 
     @Test
-    public void generateNanopubTest() throws MalformedNanopubException {
+    public void generateNanopubTest() throws MalformedNanopubException, RDFHandlerException {
         String csv = "/nanopub/ontomaton-nanopub.csv";
         System.out.println("csv="+csv);
         String filepath = getClass().getResource(csv).getFile();
@@ -32,5 +35,7 @@ public class OntoMaton2NanopubTest {
         Nanopub nanopub = ontoMaton2Nanopub.generateNanopub(filepath, nanopubURI);
 
         System.out.println(nanopub.toString());
+
+        NanopubUtils.writeToStream(nanopub, System.out, RDFFormat.TRIG);
     }
 }

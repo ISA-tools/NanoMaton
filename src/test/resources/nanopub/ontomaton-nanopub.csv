@@ -1,100 +1,100 @@
-statement	genome coverage increased  and memory consumption was 2/3 lower (during the point of largest memory consumption)					
-						
-nanopub clause	subject	predicate	object	data type	status	observation
-assertion	http://purl.obolibrary.org/obo/PATO_0000449	http://purl.obolibrary.org/obo/IAO_0000219	http://purl.obolibrary.org/obo/OBI_0001939		OBI_0001939 (prerelease)	term added to OBI for this work
-assertion	http://purl.obolibrary.org/obo/PATO_0000768	http://purl.obolibrary.org/obo/IAO_0000219	http://purl.obolibrary.org/obo/OBI_0001877		OBI_0001877 (prerelease)	term added to OBI for this work
-assertion	http://purl.obolibrary.org/obo/PATO_0000498	http://purl.obolibrary.org/obo/IAO_0000219	http://purl.obolibrary.org/obo/OBI_0001913		OBI_0001913 (prerelease)	term added to OBI for this work
-						
-						
-supporting	SOAPdenovo1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/OBI_0001522			
-supporting	genome_assembly_H1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/SO_0000353		imported in OBI - avoiding genome assembly owing to uncertain positioning in the semantic framework	replacing 'genome assembly' by 'sequence assembly' and reliance on SO
-supporting	genome_assembly_H1	http://purl.obolibrary.org/obo/OBI_0000312	genome_assembly_H1 process		OBI_0001872 (prerelease)	
-supporting	http://purl.obolibrary.org/obo/OBI_0001872	http://purl.obolibrary.org/obo/ISA0000001	SOAPdenovo1		ISA0000001 (shortcut relation for OBI 'realizes o concretizes')	
-supporting	genome_assembly_H1	http://purl.obolibrary.org/obo/IAO_0000136	genome_H1			
-supporting	genome_H1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/SO_0001026			
-supporting	http://purl.obolibrary.org/obo/SO_0001026	http://purl.obolibrary.org/obo/BFO_0000051	http://purl.obolibrary.org/obo/CHEBI_16991			
-supporting	http://purl.obolibrary.org/obo/CHEBI_16991	http://purl.obolibrary.org/obo/RO_0001000	http://purl.obolibrary.org/obo/NCBITaxon_9606			
-supporting	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/BFO_0000050	http://www.ebi.ac.uk/efo/EFO_0003161			ontological gap resolve using EFO value, where Han Chinese is a subtype of Population
-	genome_assembly_H1 process	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/OBI_0001872			
-supporting	genome_assembly_H1 process	has_duration	58	xsd:float		
-supporting	genome_assembly_H1 process	has_time_measurement_unit	http://mimi.case.edu/ontologies/2009/1/UnitsOntology#hour			
-supporting	contigN50 _v1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	N50		OBI_0001940 (prerelease)	
-supporting	contigN50 _v1	http://purl.obolibrary.org/obo/IAO_0000004	6.966666667	xsd:float		
-supporting	contigN50_v1	http://purl.obolibrary.org/obo/IAO_0000039	kilobasepair		UO:0000328	direct term request to UO (will be available in the next release)
-supporting	contigN50_v1	http://purl.obolibrary.org/obo/IAO_0000136	contig		SO_0000149	
-supporting	contigN50_v1	http://purl.obolibrary.org/obo/OBI_0000312	GAGE analysis script		(http://gage.cbcb.umd.edu/results/index.html)	
-supporting	contigN50_v1	http://purl.obolibrary.org/obo/IAO_0000219	genome_assembly_H1			
-supporting	scaffoldN50_v1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	N50		OBI_0001940 (prerelease)	
-supporting	scaffoldN50_v1	http://purl.obolibrary.org/obo/IAO_0000004	0.44	xsd:float		
-supporting	scaffoldN50_v1	http://purl.obolibrary.org/obo/IAO_0000039	megabasepair		UO:0000329	direct term request to UO (will be available in the next release)
-supporting	scaffoldN50_v1	http://purl.obolibrary.org/obo/IAO_0000136	scaffold		SO_0000148	
-supporting	scaffoldN50_v1	http://purl.obolibrary.org/obo/OBI_0000312	GAGE analysis script		(http://gage.cbcb.umd.edu/results/index.html)	
-supporting	scaffoldN50_v1	http://purl.obolibrary.org/obo/IAO_0000219	genome_assembly_H1			
-supporting	genome coverage_v1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	genome coverage		OBI_0001939 (prerelease)	
-supporting	genome coverage_v1	http://purl.obolibrary.org/obo/IAO_0000004	81.16	xsd:float		
-supporting	genome coverage_v1	http://purl.obolibrary.org/obo/IAO_0000039	http://mimi.case.edu/ontologies/2009/1/UnitsOntology#percent			
-supporting	genome coverage_v1	http://purl.obolibrary.org/obo/IAO_0000219	http://purl.obolibrary.org/obo/SO_0000353		imported in OBI - avoiding genome assembly owing to uncertain positioning in the semantic framework	
-supporting	GAGE analysis script	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/IAO_0000595			
-supporting	genome coverage_v1	http://purl.obolibrary.org/obo/OBI_0000312	GAGE analysis script		(http://gage.cbcb.umd.edu/results/index.html)	
-supporting	genome coverage_v1	http://purl.obolibrary.org/obo/OBI_0000312	http://purl.obolibrary.org/obo/OBIws_0000090		http://purl.obolibrary.org/obo/OBIws_0000090	
-supporting	genome assembly_H1	http://purl.obolibrary.org/obo/OBI_0000295	http://purl.obolibrary.org/obo/OBIws_0000090		added in order to capture the notion of alignment against genome build following assembly	
-supporting	hg19 genome build	http://purl.obolibrary.org/obo/OBI_0000295	http://purl.obolibrary.org/obo/OBIws_0000090		"hg19 should be uri e.g. 
-"	
-supporting	GCA_000001405.1	http://purl.obolibrary.org/obo/IAO_0000219	hg19 genome build			
-supporting	GCA_000001405.1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/OBI_0001614		retrieve from http://www.ncbi.nlm.nih.gov/assembly/2758/ and accessing the revision history, only GCA_000001405.1 bear hg19 as synonym, later version are refered to as patches. As the SOAPdenovo manuscript only mentions "NCBI human reference genome hg19, we take the convervative approach to reference version 1 of that assembly.	
-supporting	1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/IAO_0000129			
-supporting	1	http://purl.obolibrary.org/obo/IAO_0000136	http://purl.obolibrary.org/obo/OBI_0001614		TODO: check with authors if this is correct and possibly update to relevant version (which could be up to patch 7 released in january 2012. patch 8 was released early july2012, the paper was submitted at around the same time, which would rule it out)	
-						
-supporting	SOAPdenovo2	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/OBI_0001522			
-supporting	genome_assembly_H2	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/SO_0000353			
-supporting	genome_assembly_H2	http://purl.obolibrary.org/obo/OBI_0000312	genome_assembly_H2_process			
-supporting	genome_assembly_H2	http://purl.obolibrary.org/obo/IAO_0000136	genome			
-supporting	genome_assembly_H2_process	http://purl.obolibrary.org/obo/ISA0000001	SOAPdenovo2			
-supporting	http://purl.obolibrary.org/obo/SO_0001026	http://purl.obolibrary.org/obo/BFO_0000051	http://purl.obolibrary.org/obo/CHEBI_16991			
-supporting	http://purl.obolibrary.org/obo/CHEBI_16991	http://purl.obolibrary.org/obo/RO_0001000	http://purl.obolibrary.org/obo/NCBITaxon_9606			
-supporting	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/BFO_0000050	http://www.ebi.ac.uk/efo/EFO_0003161		ontological gap resolve using EFO value, where Han Chinese is a subtype of Population	
-supporting	genome_assembly_H2_process	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/OBI_0001872			
-supporting	genome_assembly_H2_process	has_duration	74	xsd:float		
-supporting	genome_assembly_H2_process	has_time_measurement_unit	http://mimi.case.edu/ontologies/2009/1/UnitsOntology#hour			
-supporting	contigN50_v2	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	N50		OBI_0001940 (prerelease)	
-supporting	contigN50_v2	http://purl.obolibrary.org/obo/IAO_0000004	20.9	xsd:float		
-supporting	contigN50_v2	http://purl.obolibrary.org/obo/IAO_0000039	kilobasepair		UO:0000328	direct term request to UO (will be available in the next release)
-supporting	contigN50_v2	http://purl.obolibrary.org/obo/IAO_0000136	contig		SO_0000149	
-supporting	contigN50_v2	http://purl.obolibrary.org/obo/OBI_0000312	GAGE analysis script		(http://gage.cbcb.umd.edu/results/index.html)	
-supporting	GAGE analysis script	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/IAO_0000595			
-supporting	contigN50_v2	http://purl.obolibrary.org/obo/IAO_0000219	genome_assembly_H2			
-supporting	scaffoldN50_v2	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	N50		OBI_0001940 (prerelease)	
-supporting	scaffoldN50_v2	http://purl.obolibrary.org/obo/IAO_0000004	22	xsd:float		
-supporting	scaffoldN50_v2	http://purl.obolibrary.org/obo/IAO_0000039	megabasepair		UO:0000329	direct term request to UO (will be available in the next release)
-supporting	scaffoldN50_v2	http://purl.obolibrary.org/obo/IAO_0000136	scaffold		SO_0000148	
-supporting	scaffoldN50_v2	http://purl.obolibrary.org/obo/OBI_0000312	GAGE analysis script		(http://gage.cbcb.umd.edu/results/index.html)	
-supporting	scaffoldN50_v2	http://purl.obolibrary.org/obo/IAO_0000219	genome_assembly_H2			
-supporting	genome coverage_v2	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	genome coverage		OBI_0001939 (prerelease)	
-supporting	genome coverage_v2	http://purl.obolibrary.org/obo/IAO_0000004	93.91	xsd:float		
-supporting	genome coverage_v2	http://purl.obolibrary.org/obo/IAO_0000039	http://mimi.case.edu/ontologies/2009/1/UnitsOntology#percent			
-supporting	genome coverage_v2	http://purl.obolibrary.org/obo/IAO_0000219	genome assembly		Terms available in ERO (http://purl.obolibrary.org/obo/ERO_0000609) also used in NIFSTD, RSA (http://rdf.biosemantics.org/ontologies/rsa#GenomeAssembly), NCIT, EDAM and SWO	
-supporting	genome coverage_v2	http://purl.obolibrary.org/obo/OBI_0000312	GAGE analysis script		(http://gage.cbcb.umd.edu/results/index.html)	
-supporting	genome coverage_v2	http://purl.obolibrary.org/obo/OBI_0000312	http://purl.obolibrary.org/obo/OBIws_0000090		http://purl.obolibrary.org/obo/OBIws_0000090	
-supporting	genome assembly_H2	http://purl.obolibrary.org/obo/OBI_0000295	http://purl.obolibrary.org/obo/OBIws_0000090		added in order to capture the notion of alignment against genome build following assembly	
-supporting	hg19 genome build	http://purl.obolibrary.org/obo/OBI_0000295	http://purl.obolibrary.org/obo/OBIws_0000090		hg19 should be uri e.g. NC_001807	
-	GCA_000001405.1	http://purl.obolibrary.org/obo/IAO_0000219	hg19 genome build			
-	GCA_000001405.1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/OBI_0001614		retrieve from http://www.ncbi.nlm.nih.gov/assembly/2758/ and accessing the revision history, only GCA_000001405.1 bear hg19 as synonym, later version are refered to as patches. As the SOAPdenovo manuscript only mentions "NCBI human reference genome hg19, we take the convervative approach to reference version 1 of that assembly.	
-	1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	http://purl.obolibrary.org/obo/IAO_0000129			
-	1	http://purl.obolibrary.org/obo/IAO_0000136	http://purl.obolibrary.org/obo/OBI_0001614		TODO: check with authors if this is correct and possibly update to relevant version (which could be up to patch 7 released in january 2012. patch 8 was released early july2012, the paper was submitted at around the same time, which would rule it out)	
-						
-supporting	fold change_contigN50_2vs1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	fold change		ontological gap	
-supporting	fold change_contigN50_2vs1	http://purl.obolibrary.org/obo/IAO_0000004	3	xsd:float		
-supporting	fold change_contigN50_2vs1	has_numerator	contigN50_v2		ontological gap	
-supporting	fold change_contigN50_2vs1	has_denominator	contigN50_v1		ontological gap	
-						
-supporting	fold change_scaffoldN50_2vs1	http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of	fold change		ontological gap	
-supporting	fold change_scaffoldN50_2vs1	http://purl.obolibrary.org/obo/IAO_0000004	50	xsd:float		
-supporting	fold change_scaffoldN50_2vs1	has_numerator	scaffoldN50_v2		ontological gap	
-supporting	fold change_scaffoldN50_2vs1	has_denominator	scaffoldN50_v1		ontological gap	
-						
-provenance	nanopub1	versionNumber	1			
-provenance	nanopub1	created	<date>			
-provenance	nanopub1	creator	PRS			
-provenance	nanopub1	creator	AGB			
-provenance	nanopub1	rightsHolder				
-provenance	nanopub1	citation	the paper DOI			
+statement,genome coverage increased  and memory consumption was 2/3 lower (during the point of largest memory consumption),,,,,
+,,,,,,
+nanopub clause,subject,predicate,object,data type,status,observation
+assertion,http://purl.obolibrary.org/obo/PATO_0000449,http://purl.obolibrary.org/obo/IAO_0000219,http://purl.obolibrary.org/obo/OBI_0001939,,OBI_0001939 (prerelease),term added to OBI for this work
+assertion,http://purl.obolibrary.org/obo/PATO_0000768,http://purl.obolibrary.org/obo/IAO_0000219,http://purl.obolibrary.org/obo/OBI_0001877,,OBI_0001877 (prerelease),term added to OBI for this work
+assertion,http://purl.obolibrary.org/obo/PATO_0000498,http://purl.obolibrary.org/obo/IAO_0000219,http://purl.obolibrary.org/obo/OBI_0001913,,OBI_0001913 (prerelease),term added to OBI for this work
+,,,,,,
+,,,,,,
+supporting,SOAPdenovo1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/OBI_0001522,,,
+supporting,genome_assembly_H1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/SO_0000353,,imported in OBI - avoiding genome assembly owing to uncertain positioning in the semantic framework,replacing 'genome assembly' by 'sequence assembly' and reliance on SO
+supporting,genome_assembly_H1,http://purl.obolibrary.org/obo/OBI_0000312,genome_assembly_H1 process,,OBI_0001872 (prerelease),
+supporting,http://purl.obolibrary.org/obo/OBI_0001872,http://purl.obolibrary.org/obo/ISA0000001,SOAPdenovo1,,ISA0000001 (shortcut relation for OBI 'realizes o concretizes'),
+supporting,genome_assembly_H1,http://purl.obolibrary.org/obo/IAO_0000136,genome_H1,,,
+supporting,genome_H1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/SO_0001026,,,
+supporting,http://purl.obolibrary.org/obo/SO_0001026,http://purl.obolibrary.org/obo/BFO_0000051,http://purl.obolibrary.org/obo/CHEBI_16991,,,
+supporting,http://purl.obolibrary.org/obo/CHEBI_16991,http://purl.obolibrary.org/obo/RO_0001000,http://purl.obolibrary.org/obo/NCBITaxon_9606,,,
+supporting,http://purl.obolibrary.org/obo/NCBITaxon_9606,http://purl.obolibrary.org/obo/BFO_0000050,http://www.ebi.ac.uk/efo/EFO_0003161,,,"ontological gap resolve using EFO value, where Han Chinese is a subtype of Population"
+,genome_assembly_H1 process,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/OBI_0001872,,,
+supporting,genome_assembly_H1 process,has_duration,58,xsd:float,,
+supporting,genome_assembly_H1 process,has_time_measurement_unit,http://mimi.case.edu/ontologies/2009/1/UnitsOntology#hour,,,
+supporting,contigN50 _v1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,N50,,OBI_0001940 (prerelease),
+supporting,contigN50 _v1,http://purl.obolibrary.org/obo/IAO_0000004,6.96666666666667,xsd:float,,
+supporting,contigN50_v1,http://purl.obolibrary.org/obo/IAO_0000039,kilobasepair,,UO:0000328,direct term request to UO (will be available in the next release)
+supporting,contigN50_v1,http://purl.obolibrary.org/obo/IAO_0000136,contig,,SO_0000149,
+supporting,contigN50_v1,http://purl.obolibrary.org/obo/OBI_0000312,GAGE analysis script,,(http://gage.cbcb.umd.edu/results/index.html),
+supporting,contigN50_v1,http://purl.obolibrary.org/obo/IAO_0000219,genome_assembly_H1,,,
+supporting,scaffoldN50_v1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,N50,,OBI_0001940 (prerelease),
+supporting,scaffoldN50_v1,http://purl.obolibrary.org/obo/IAO_0000004,0.44,xsd:float,,
+supporting,scaffoldN50_v1,http://purl.obolibrary.org/obo/IAO_0000039,megabasepair,,UO:0000329,direct term request to UO (will be available in the next release)
+supporting,scaffoldN50_v1,http://purl.obolibrary.org/obo/IAO_0000136,scaffold,,SO_0000148,
+supporting,scaffoldN50_v1,http://purl.obolibrary.org/obo/OBI_0000312,GAGE analysis script,,(http://gage.cbcb.umd.edu/results/index.html),
+supporting,scaffoldN50_v1,http://purl.obolibrary.org/obo/IAO_0000219,genome_assembly_H1,,,
+supporting,genome coverage_v1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,genome coverage,,OBI_0001939 (prerelease),
+supporting,genome coverage_v1,http://purl.obolibrary.org/obo/IAO_0000004,81.16,xsd:float,,
+supporting,genome coverage_v1,http://purl.obolibrary.org/obo/IAO_0000039,http://mimi.case.edu/ontologies/2009/1/UnitsOntology#percent,,,
+supporting,genome coverage_v1,http://purl.obolibrary.org/obo/IAO_0000219,http://purl.obolibrary.org/obo/SO_0000353,,imported in OBI - avoiding genome assembly owing to uncertain positioning in the semantic framework,
+supporting,GAGE analysis script,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/IAO_0000595,,,
+supporting,genome coverage_v1,http://purl.obolibrary.org/obo/OBI_0000312,GAGE analysis script,,(http://gage.cbcb.umd.edu/results/index.html),
+supporting,genome coverage_v1,http://purl.obolibrary.org/obo/OBI_0000312,http://purl.obolibrary.org/obo/OBIws_0000090,,http://purl.obolibrary.org/obo/OBIws_0000090,
+supporting,genome assembly_H1,http://purl.obolibrary.org/obo/OBI_0000295,http://purl.obolibrary.org/obo/OBIws_0000090,,added in order to capture the notion of alignment against genome build following assembly,
+supporting,hg19 genome build,http://purl.obolibrary.org/obo/OBI_0000295,http://purl.obolibrary.org/obo/OBIws_0000090,,"hg19 should be uri e.g. 
+",
+supporting,GCA_000001405.1,http://purl.obolibrary.org/obo/IAO_0000219,hg19 genome build,,,
+supporting,GCA_000001405.1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/OBI_0001614,,"retrieve from http://www.ncbi.nlm.nih.gov/assembly/2758/ and accessing the revision history, only GCA_000001405.1 bear hg19 as synonym, later version are refered to as patches. As the SOAPdenovo manuscript only mentions ""NCBI human reference genome hg19, we take the convervative approach to reference version 1 of that assembly.",
+supporting,1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/IAO_0000129,,,
+supporting,1,http://purl.obolibrary.org/obo/IAO_0000136,http://purl.obolibrary.org/obo/OBI_0001614,,"TODO: check with authors if this is correct and possibly update to relevant version (which could be up to patch 7 released in january 2012. patch 8 was released early july2012, the paper was submitted at around the same time, which would rule it out)",
+,,,,,,
+supporting,SOAPdenovo2,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/OBI_0001522,,,
+supporting,genome_assembly_H2,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/SO_0000353,,,
+supporting,genome_assembly_H2,http://purl.obolibrary.org/obo/OBI_0000312,genome_assembly_H2_process,,,
+supporting,genome_assembly_H2,http://purl.obolibrary.org/obo/IAO_0000136,genome,,,
+supporting,genome_assembly_H2_process,http://purl.obolibrary.org/obo/ISA0000001,SOAPdenovo2,,,
+supporting,http://purl.obolibrary.org/obo/SO_0001026,http://purl.obolibrary.org/obo/BFO_0000051,http://purl.obolibrary.org/obo/CHEBI_16991,,,
+supporting,http://purl.obolibrary.org/obo/CHEBI_16991,http://purl.obolibrary.org/obo/RO_0001000,http://purl.obolibrary.org/obo/NCBITaxon_9606,,,
+supporting,http://purl.obolibrary.org/obo/NCBITaxon_9606,http://purl.obolibrary.org/obo/BFO_0000050,http://www.ebi.ac.uk/efo/EFO_0003161,,"ontological gap resolve using EFO value, where Han Chinese is a subtype of Population",
+supporting,genome_assembly_H2_process,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/OBI_0001872,,,
+supporting,genome_assembly_H2_process,has_duration,74,xsd:float,,
+supporting,genome_assembly_H2_process,has_time_measurement_unit,http://mimi.case.edu/ontologies/2009/1/UnitsOntology#hour,,,
+supporting,contigN50_v2,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,N50,,OBI_0001940 (prerelease),
+supporting,contigN50_v2,http://purl.obolibrary.org/obo/IAO_0000004,20.9,xsd:float,,
+supporting,contigN50_v2,http://purl.obolibrary.org/obo/IAO_0000039,kilobasepair,,UO:0000328,direct term request to UO (will be available in the next release)
+supporting,contigN50_v2,http://purl.obolibrary.org/obo/IAO_0000136,contig,,SO_0000149,
+supporting,contigN50_v2,http://purl.obolibrary.org/obo/OBI_0000312,GAGE analysis script,,(http://gage.cbcb.umd.edu/results/index.html),
+supporting,GAGE analysis script,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/IAO_0000595,,,
+supporting,contigN50_v2,http://purl.obolibrary.org/obo/IAO_0000219,genome_assembly_H2,,,
+supporting,scaffoldN50_v2,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,N50,,OBI_0001940 (prerelease),
+supporting,scaffoldN50_v2,http://purl.obolibrary.org/obo/IAO_0000004,22,xsd:float,,
+supporting,scaffoldN50_v2,http://purl.obolibrary.org/obo/IAO_0000039,megabasepair,,UO:0000329,direct term request to UO (will be available in the next release)
+supporting,scaffoldN50_v2,http://purl.obolibrary.org/obo/IAO_0000136,scaffold,,SO_0000148,
+supporting,scaffoldN50_v2,http://purl.obolibrary.org/obo/OBI_0000312,GAGE analysis script,,(http://gage.cbcb.umd.edu/results/index.html),
+supporting,scaffoldN50_v2,http://purl.obolibrary.org/obo/IAO_0000219,genome_assembly_H2,,,
+supporting,genome coverage_v2,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,genome coverage,,OBI_0001939 (prerelease),
+supporting,genome coverage_v2,http://purl.obolibrary.org/obo/IAO_0000004,93.91,xsd:float,,
+supporting,genome coverage_v2,http://purl.obolibrary.org/obo/IAO_0000039,http://mimi.case.edu/ontologies/2009/1/UnitsOntology#percent,,,
+supporting,genome coverage_v2,http://purl.obolibrary.org/obo/IAO_0000219,genome assembly,,"Terms available in ERO (http://purl.obolibrary.org/obo/ERO_0000609) also used in NIFSTD, RSA (http://rdf.biosemantics.org/ontologies/rsa#GenomeAssembly), NCIT, EDAM and SWO",
+supporting,genome coverage_v2,http://purl.obolibrary.org/obo/OBI_0000312,GAGE analysis script,,(http://gage.cbcb.umd.edu/results/index.html),
+supporting,genome coverage_v2,http://purl.obolibrary.org/obo/OBI_0000312,http://purl.obolibrary.org/obo/OBIws_0000090,,http://purl.obolibrary.org/obo/OBIws_0000090,
+supporting,genome assembly_H2,http://purl.obolibrary.org/obo/OBI_0000295,http://purl.obolibrary.org/obo/OBIws_0000090,,added in order to capture the notion of alignment against genome build following assembly,
+supporting,hg19 genome build,http://purl.obolibrary.org/obo/OBI_0000295,http://purl.obolibrary.org/obo/OBIws_0000090,,hg19 should be uri e.g. NC_001807,
+,GCA_000001405.1,http://purl.obolibrary.org/obo/IAO_0000219,hg19 genome build,,,
+,GCA_000001405.1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/OBI_0001614,,"retrieve from http://www.ncbi.nlm.nih.gov/assembly/2758/ and accessing the revision history, only GCA_000001405.1 bear hg19 as synonym, later version are refered to as patches. As the SOAPdenovo manuscript only mentions ""NCBI human reference genome hg19, we take the convervative approach to reference version 1 of that assembly.",
+,1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,http://purl.obolibrary.org/obo/IAO_0000129,,,
+,1,http://purl.obolibrary.org/obo/IAO_0000136,http://purl.obolibrary.org/obo/OBI_0001614,,"TODO: check with authors if this is correct and possibly update to relevant version (which could be up to patch 7 released in january 2012. patch 8 was released early july2012, the paper was submitted at around the same time, which would rule it out)",
+,,,,,,
+supporting,fold change_contigN50_2vs1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,fold change,,ontological gap,
+supporting,fold change_contigN50_2vs1,http://purl.obolibrary.org/obo/IAO_0000004,3,xsd:float,,
+supporting,fold change_contigN50_2vs1,has_numerator,contigN50_v2,,ontological gap,
+supporting,fold change_contigN50_2vs1,has_denominator,contigN50_v1,,ontological gap,
+,,,,,,
+supporting,fold change_scaffoldN50_2vs1,http://purl.obolibrary.org/obo/uberon/phenoscape-anatomy#instance_of,fold change,,ontological gap,
+supporting,fold change_scaffoldN50_2vs1,http://purl.obolibrary.org/obo/IAO_0000004,50,xsd:float,,
+supporting,fold change_scaffoldN50_2vs1,has_numerator,scaffoldN50_v2,,ontological gap,
+supporting,fold change_scaffoldN50_2vs1,has_denominator,scaffoldN50_v1,,ontological gap,
+,,,,,,
+provenance,nanopub1,versionNumber,1,,,
+provenance,nanopub1,created,<date>,,,
+provenance,nanopub1,creator,PRS,,,
+provenance,nanopub1,creator,AGB,,,
+provenance,nanopub1,rightsHolder,,,,
+provenance,nanopub1,citation,the paper DOI,,,

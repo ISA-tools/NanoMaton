@@ -42,7 +42,7 @@ public class OntoMaton2Nanopub {
 
         ValueFactory factory = ValueFactoryImpl.getInstance();
 
-        URI context = factory.createURI("http://example.org/contexts/graph1");
+        URI nanopubGraphURI = factory.createURI("http://example.org/contexts/graph1");
 
         URI assertionGraphURI = factory.createURI("http://example.org/G1");
 
@@ -53,10 +53,10 @@ public class OntoMaton2Nanopub {
 
         Collection<Statement> statementCollection = generateStmtsFromOntoMatonTemplate(csvFilename, factory , nanopubURI, assertionGraphURI, provenanceGraphURI, pubInfoGraphURI);
 
-        Statement nanopub1Statement1 = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, context);
-        Statement nanopub1Statement2 = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, context);
-        Statement nanopub1Statement3 = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, context);
-        Statement nanopub1Statement4 = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, context);
+        Statement nanopub1Statement1 = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
+        Statement nanopub1Statement2 = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
+        Statement nanopub1Statement3 = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubGraphURI);
+        Statement nanopub1Statement4 = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubGraphURI);
 
         statementCollection.add(nanopub1Statement1);
         statementCollection.add(nanopub1Statement2);
@@ -78,22 +78,27 @@ public class OntoMaton2Nanopub {
         Collection<Statement> statementCollection = new ArrayList<Statement>();
         try {
             CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
-            Statement stmt = null;
+            Statement stmt;
 
             String[] nextLine = null;
             while ((nextLine = csvReader.readNext()) != null) {
 
+                stmt = null;
+
                 if (nextLine!=null){
 
-                    if (nextLine[0].equals(Nanopub.ASSERTION)){
+
+                    if (nextLine[0].startsWith(Nanopub.ASSERTION)){
+
 
                         stmt = factory.createStatement(factory.createURI(nextLine[1]), factory.createURI(nextLine[2]), factory.createURI(nextLine[3]), assertionGraphURI);
 
-                    } else if (nextLine[0].equals(Nanopub.SUPPORTING)){
+
+                    } else if (nextLine[0].startsWith(Nanopub.SUPPORTING)){
 
                         stmt = factory.createStatement(factory.createURI(nextLine[1]), factory.createURI(nextLine[2]), factory.createURI(nextLine[3]), provenanceGraphURI);
 
-                    } else if (nextLine[0].equals(Nanopub.PROVENANCE)){
+                    } else if (nextLine[0].startsWith(Nanopub.PROVENANCE)){
 
                         stmt =  factory.createStatement(factory.createURI(nextLine[1]), factory.createURI(nextLine[2]), factory.createURI(nextLine[3]), pubInfoGraphURI);
 
@@ -116,7 +121,11 @@ public class OntoMaton2Nanopub {
     }
 
 
+    private Statement parseStatement(String[] line, ValueFactory factory, URI graphURI){
 
+        Statement stmt =  factory.createStatement(factory.createURI(line[1]), factory.createURI(line[2]), factory.createURI(line[3]), graphURI);
+
+    }
 
 
 
