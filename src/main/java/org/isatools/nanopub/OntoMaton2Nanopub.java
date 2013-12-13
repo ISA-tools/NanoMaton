@@ -88,19 +88,19 @@ public class OntoMaton2Nanopub {
                 if (nextLine!=null){
 
 
-                    if (nextLine[0].startsWith(Nanopub.ASSERTION)){
+                    if (nextLine[0].startsWith(OntoMatonNanopubTemplate.ASSERTION)){
 
 
-                        stmt = factory.createStatement(factory.createURI(nextLine[1]), factory.createURI(nextLine[2]), factory.createURI(nextLine[3]), assertionGraphURI);
+                        parseStatement(nextLine, factory, assertionGraphURI);
 
 
-                    } else if (nextLine[0].startsWith(Nanopub.SUPPORTING)){
+                    } else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.SUPPORTING)){
 
-                        stmt = factory.createStatement(factory.createURI(nextLine[1]), factory.createURI(nextLine[2]), factory.createURI(nextLine[3]), provenanceGraphURI);
+                        parseStatement(nextLine, factory, provenanceGraphURI);
 
-                    } else if (nextLine[0].startsWith(Nanopub.PROVENANCE)){
+                    } else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.PROVENANCE)){
 
-                        stmt =  factory.createStatement(factory.createURI(nextLine[1]), factory.createURI(nextLine[2]), factory.createURI(nextLine[3]), pubInfoGraphURI);
+                        parseStatement(nextLine, factory, pubInfoGraphURI);
 
                     }
 
@@ -123,8 +123,15 @@ public class OntoMaton2Nanopub {
 
     private Statement parseStatement(String[] line, ValueFactory factory, URI graphURI){
 
-        Statement stmt =  factory.createStatement(factory.createURI(line[1]), factory.createURI(line[2]), factory.createURI(line[3]), graphURI);
+        URI subject = null;
 
+        if (line[1].startsWith("http://"))
+            subject = factory.createURI(line[1]);
+
+        URI predicate = factory.createURI(line[2]);
+        URI object = factory.createURI(line[3]);
+        Statement stmt =  factory.createStatement(subject, predicate, object, graphURI);
+        return stmt;
     }
 
 
