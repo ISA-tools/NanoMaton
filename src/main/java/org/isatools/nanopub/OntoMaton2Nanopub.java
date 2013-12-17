@@ -26,6 +26,8 @@ import java.util.Collection;
  */
 public class OntoMaton2Nanopub {
 
+   private static String HTTP = "http://";
+
    public OntoMaton2Nanopub(){}
 
 
@@ -91,16 +93,16 @@ public class OntoMaton2Nanopub {
                     if (nextLine[0].startsWith(OntoMatonNanopubTemplate.ASSERTION)){
 
 
-                        parseStatement(nextLine, factory, assertionGraphURI);
+                        stmt = parseStatement(nextLine, factory, assertionGraphURI);
 
 
                     } else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.SUPPORTING)){
 
-                        parseStatement(nextLine, factory, provenanceGraphURI);
+                        stmt = parseStatement(nextLine, factory, provenanceGraphURI);
 
                     } else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.PROVENANCE)){
 
-                        parseStatement(nextLine, factory, pubInfoGraphURI);
+                        stmt = parseStatement(nextLine, factory, pubInfoGraphURI);
 
                     }
 
@@ -109,7 +111,7 @@ public class OntoMaton2Nanopub {
 
                 }
 
-            }
+            } //while
 
         }catch(FileNotFoundException fnfex){
             fnfex.printStackTrace();
@@ -123,14 +125,21 @@ public class OntoMaton2Nanopub {
 
     private Statement parseStatement(String[] line, ValueFactory factory, URI graphURI){
 
-        URI subject = null;
+        URI subject = null, predicate = null, object = null;
+        Statement stmt = null;
 
-        if (line[1].startsWith("http://"))
+        if (line[1].startsWith(HTTP))
             subject = factory.createURI(line[1]);
 
-        URI predicate = factory.createURI(line[2]);
-        URI object = factory.createURI(line[3]);
-        Statement stmt =  factory.createStatement(subject, predicate, object, graphURI);
+        if (line[2].startsWith(HTTP))
+            predicate = factory.createURI(line[2]);
+
+        if (line[3].startsWith(HTTP))
+            object = factory.createURI(line[3]);
+
+        if (subject!=null && predicate !=null && object !=null && graphURI!=null)
+            stmt = factory.createStatement(subject, predicate, object, graphURI);
+
         return stmt;
     }
 
