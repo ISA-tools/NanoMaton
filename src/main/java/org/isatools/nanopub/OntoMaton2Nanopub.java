@@ -28,8 +28,9 @@ public class OntoMaton2Nanopub {
 
    private static String HTTP = "http://";
 
-   public OntoMaton2Nanopub(){}
+   private URI nanopubGraphURI=null, assertionGraphURI=null, provenanceGraphURI=null, pubInfoGraphURI=null;
 
+   public OntoMaton2Nanopub(){}
 
     /**
      * Main method to use to generate a NanoPub from an OntoMaton template
@@ -44,16 +45,16 @@ public class OntoMaton2Nanopub {
 
         ValueFactory factory = ValueFactoryImpl.getInstance();
 
-        URI nanopubGraphURI = factory.createURI("http://example.org/contexts/graph1");
+        nanopubGraphURI = factory.createURI("http://example.org/contexts/graph1");
 
-        URI assertionGraphURI = factory.createURI("http://example.org/G1");
+        assertionGraphURI = factory.createURI("http://example.org/G1");
 
-        URI provenanceGraphURI = factory.createURI("http://example.org/G2");
+        provenanceGraphURI = factory.createURI("http://example.org/G2");
 
-        URI pubInfoGraphURI = factory.createURI("http://example.org/G4");
+        pubInfoGraphURI = factory.createURI("http://example.org/G4");
 
 
-        Collection<Statement> statementCollection = generateStmtsFromOntoMatonTemplate(csvFilename, factory , nanopubURI, assertionGraphURI, provenanceGraphURI, pubInfoGraphURI);
+        Collection<Statement> statementCollection = generateStmtsFromOntoMatonTemplate(csvFilename, factory);
 
         Statement nanopub1Statement1 = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
         Statement nanopub1Statement2 = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
@@ -76,7 +77,7 @@ public class OntoMaton2Nanopub {
      * Reads the OntoMaton template for creating nanopublications.
      *
      */
-    private  Collection<Statement>  generateStmtsFromOntoMatonTemplate(String csvFilename, ValueFactory factory, URI nanopubURI, URI assertionGraphURI, URI provenanceGraphURI, URI pubInfoGraphURI){
+    private  Collection<Statement>  generateStmtsFromOntoMatonTemplate(String csvFilename, ValueFactory factory){
         Collection<Statement> statementCollection = new ArrayList<Statement>();
         try {
             CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
@@ -89,12 +90,25 @@ public class OntoMaton2Nanopub {
 
                 if (nextLine!=null){
 
+                    if (nextLine[0].startsWith((OntoMatonNanopubTemplate.NANOPUB_URI))){
 
-                    if (nextLine[0].startsWith(OntoMatonNanopubTemplate.ASSERTION)){
+                        nanopubGraphURI = factory.createURI(nextLine[1]);
 
+                    }else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.ASSERTION_GRAPH_URI)))
+
+                        assertionGraphURI = factory.createURI(nextLine[1]);
+
+                    else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.SUPPORTING_GRAPH_URI)))
+
+                        pubInfoGraphURI = factory.createURI(nextLine[1]);
+
+                    else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.PROVENANCE_GRAPH_URI)))
+
+                        provenanceGraphURI = factory.createURI(nextLine[1]);
+
+                    else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.ASSERTION)){
 
                         stmt = parseStatement(nextLine, factory, assertionGraphURI);
-
 
                     } else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.SUPPORTING)){
 
@@ -130,6 +144,8 @@ public class OntoMaton2Nanopub {
 
         if (line[1].startsWith(HTTP))
             subject = factory.createURI(line[1]);
+        //else
+
 
         if (line[2].startsWith(HTTP))
             predicate = factory.createURI(line[2]);

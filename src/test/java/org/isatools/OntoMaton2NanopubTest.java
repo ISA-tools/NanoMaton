@@ -24,7 +24,8 @@ public class OntoMaton2NanopubTest {
 
     @Test
     public void generateNanopubTest() throws MalformedNanopubException, RDFHandlerException {
-        String csv = "/nanopub/ontomaton-nanopub.csv";
+        //String csv = "/nanopub/ontomaton-nanopub.csv";
+        String csv = "/nanopub/soapdenovo2-nanopub1.csv";
         System.out.println("csv="+csv);
         String filepath = getClass().getResource(csv).getFile();
         OntoMaton2Nanopub ontoMaton2Nanopub = new OntoMaton2Nanopub();
