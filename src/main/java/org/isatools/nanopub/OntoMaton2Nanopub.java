@@ -155,14 +155,20 @@ public class OntoMaton2Nanopub {
 
         if (line[1].startsWith(HTTP))
             subject = factory.createURI(line[1]);
-        //else
-
+        else
+            subject = factory.createURI(nanopubURI+"/"+line[1]);
 
         if (line[2].startsWith(HTTP))
             predicate = factory.createURI(line[2]);
+        else
+            predicate = factory.createURI(nanopubURI+"/"+line[1]);
+
 
         if (line[3].startsWith(HTTP))
             object = factory.createURI(line[3]);
+        else
+            object = factory.createURI(nanopubURI+"/"+line[1]);
+
 
         if (subject!=null && predicate !=null && object !=null && graphURI!=null)
             stmt = factory.createStatement(subject, predicate, object, graphURI);

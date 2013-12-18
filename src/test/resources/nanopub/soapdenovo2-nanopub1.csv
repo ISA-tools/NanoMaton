@@ -1,6 +1,6 @@
+statement,"genome coverage increased for SOAPdenovo2 with respect to SOAPdenovo1, when applied to the human data",,,,,
 nanopubGraphURI,http://purl.org/isatab/soapdenovo2/nanopub/000001/context,,,,,,
 nanopubURI,http://purl.org/isatab/soapdenovo2/nanopub/000001,,,,,
-statement,"genome coverage increased for SOAPdenovo2 with respect to SOAPdenovo1, when applied to the human data",,,,,
 assertionGraphURI,http://purl.org/isatab/soapdenovo2/nanopub/000001/assertion,,,,,
 supportingGraphURI,http://purl.org/isatab/soapdenovo2/nanopub/000001/supporting,,,,,
 provenanceGraphURI,http://purl.org/isatab/soapdenovo2/nanopub/000001/provenance,,,,,
