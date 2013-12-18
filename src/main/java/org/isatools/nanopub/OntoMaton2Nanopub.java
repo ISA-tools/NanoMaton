@@ -48,26 +48,13 @@ public class OntoMaton2Nanopub {
 
         ValueFactory factory = ValueFactoryImpl.getInstance();
 
+        //default values for graphs URIs
         nanopubGraphURI = factory.createURI("http://example.org/contexts/graph1");
-
         assertionGraphURI = factory.createURI("http://example.org/G1");
-
         provenanceGraphURI = factory.createURI("http://example.org/G2");
-
         pubInfoGraphURI = factory.createURI("http://example.org/G4");
 
-
         Collection<Statement> statementCollection = generateStmtsFromOntoMatonTemplate(csvFilename, factory);
-
-        //Statement nanopub1Statement1 = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
-        //Statement nanopub1Statement2 = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
-        //Statement nanopub1Statement3 = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubGraphURI);
-        //Statement nanopub1Statement4 = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubGraphURI);
-
-        //statementCollection.add(nanopub1Statement1);
-        //statementCollection.add(nanopub1Statement2);
-        //statementCollection.add(nanopub1Statement3);
-        //statementCollection.add(nanopub1Statement4);
 
         Nanopub nanopub = new NanopubImpl(statementCollection);
 
