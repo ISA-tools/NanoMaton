@@ -15,6 +15,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by the ISATeam.
@@ -28,7 +30,8 @@ public class OntoMaton2Nanopub {
 
    private static String HTTP = "http://";
 
-   private URI nanopubGraphURI=null, assertionGraphURI=null, provenanceGraphURI=null, pubInfoGraphURI=null;
+   private URI nanopubURI=null, nanopubGraphURI=null, assertionGraphURI=null, provenanceGraphURI=null, pubInfoGraphURI=null;
+   private Map<String,URI> individualURImap = new HashMap<String, URI>();
 
    public OntoMaton2Nanopub(){}
 
@@ -36,11 +39,11 @@ public class OntoMaton2Nanopub {
      * Main method to use to generate a NanoPub from an OntoMaton template
      *
      * @param csvFilename
-     * @param nanopubURI
      * @return
      * @throws MalformedNanopubException
      */
-    public Nanopub generateNanopub(String csvFilename, URI nanopubURI) throws MalformedNanopubException {
+    public Nanopub generateNanopub(String csvFilename) throws MalformedNanopubException {
+
 
 
         ValueFactory factory = ValueFactoryImpl.getInstance();
@@ -56,15 +59,15 @@ public class OntoMaton2Nanopub {
 
         Collection<Statement> statementCollection = generateStmtsFromOntoMatonTemplate(csvFilename, factory);
 
-        Statement nanopub1Statement1 = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
-        Statement nanopub1Statement2 = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
-        Statement nanopub1Statement3 = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubGraphURI);
-        Statement nanopub1Statement4 = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubGraphURI);
+        //Statement nanopub1Statement1 = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
+        //Statement nanopub1Statement2 = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
+        //Statement nanopub1Statement3 = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubGraphURI);
+        //Statement nanopub1Statement4 = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubGraphURI);
 
-        statementCollection.add(nanopub1Statement1);
-        statementCollection.add(nanopub1Statement2);
-        statementCollection.add(nanopub1Statement3);
-        statementCollection.add(nanopub1Statement4);
+        //statementCollection.add(nanopub1Statement1);
+        //statementCollection.add(nanopub1Statement2);
+        //statementCollection.add(nanopub1Statement3);
+        //statementCollection.add(nanopub1Statement4);
 
         Nanopub nanopub = new NanopubImpl(statementCollection);
 
@@ -90,23 +93,31 @@ public class OntoMaton2Nanopub {
 
                 if (nextLine!=null){
 
-                    if (nextLine[0].startsWith((OntoMatonNanopubTemplate.NANOPUB_URI))){
+                    if (nextLine[0].startsWith((OntoMatonNanopubTemplate.NANOPUB_GRAPH_URI))){
 
                         nanopubGraphURI = factory.createURI(nextLine[1]);
 
-                    }else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.ASSERTION_GRAPH_URI)))
+                    }else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.NANOPUB_URI))){
+
+                        nanopubURI = factory.createURI(nextLine[1]);
+                        stmt = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
+
+                    }else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.ASSERTION_GRAPH_URI))){
 
                         assertionGraphURI = factory.createURI(nextLine[1]);
+                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
 
-                    else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.SUPPORTING_GRAPH_URI)))
+                    }else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.SUPPORTING_GRAPH_URI))){
 
                         pubInfoGraphURI = factory.createURI(nextLine[1]);
+                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubGraphURI);
 
-                    else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.PROVENANCE_GRAPH_URI)))
+                    }else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.PROVENANCE_GRAPH_URI))) {
 
                         provenanceGraphURI = factory.createURI(nextLine[1]);
+                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubGraphURI);
 
-                    else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.ASSERTION)){
+                    }else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.ASSERTION)){
 
                         stmt = parseStatement(nextLine, factory, assertionGraphURI);
 

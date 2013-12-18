@@ -15,6 +15,8 @@ public class OntoMatonNanopubTemplate {
     public static final String SUPPORTING = "supporting";
     public static final String PROVENANCE = "provenance";
 
+
+    public static final String NANOPUB_GRAPH_URI = "nanopubGraphURI";
     public static final String NANOPUB_URI = "nanopubURI";
     public static final String ASSERTION_GRAPH_URI = "assertionGraphURI";
     public static final String SUPPORTING_GRAPH_URI = "supportingGraphURI";

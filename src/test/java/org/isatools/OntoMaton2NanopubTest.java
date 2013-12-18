@@ -5,9 +5,6 @@ import org.junit.Test;
 import org.nanopub.MalformedNanopubException;
 import org.nanopub.Nanopub;
 import org.nanopub.NanopubUtils;
-import org.openrdf.model.URI;
-import org.openrdf.model.ValueFactory;
-import org.openrdf.model.impl.ValueFactoryImpl;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFHandlerException;
 
@@ -30,10 +27,10 @@ public class OntoMaton2NanopubTest {
         String filepath = getClass().getResource(csv).getFile();
         OntoMaton2Nanopub ontoMaton2Nanopub = new OntoMaton2Nanopub();
 
-        ValueFactory factory = ValueFactoryImpl.getInstance();
-        URI nanopubURI = factory.createURI("http://example.org/nanopub1");
+        //ValueFactory factory = ValueFactoryImpl.getInstance();
+        //URI nanopubURI = factory.createURI("http://example.org/nanopub1");
 
-        Nanopub nanopub = ontoMaton2Nanopub.generateNanopub(filepath, nanopubURI);
+        Nanopub nanopub = ontoMaton2Nanopub.generateNanopub(filepath);
 
         System.out.println(nanopub.toString());
 
