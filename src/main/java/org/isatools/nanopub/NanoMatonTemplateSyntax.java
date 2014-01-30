@@ -8,7 +8,7 @@ package org.isatools.nanopub;
  *
  * @author <a href="mailto:alejandra.gonzalez.beltran@gmail.com">Alejandra Gonzalez-Beltran</a>
  */
-public class OntoMatonNanopubTemplate {
+public class NanoMatonTemplateSyntax {
 
     //elements from the schema
     public static final String ASSERTION = "assertion";

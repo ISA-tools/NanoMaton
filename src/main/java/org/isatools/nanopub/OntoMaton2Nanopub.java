@@ -80,39 +80,39 @@ public class OntoMaton2Nanopub {
 
                 if (nextLine!=null){
 
-                    if (nextLine[0].startsWith((OntoMatonNanopubTemplate.NANOPUB_GRAPH_URI))){
+                    if (nextLine[0].startsWith((NanoMatonTemplateSyntax.NANOPUB_GRAPH_URI))){
 
                         nanopubGraphURI = factory.createURI(nextLine[1]);
 
-                    }else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.NANOPUB_URI))){
+                    }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.NANOPUB_URI))){
 
                         nanopubURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
 
-                    }else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.ASSERTION_GRAPH_URI))){
+                    }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.ASSERTION_GRAPH_URI))){
 
                         assertionGraphURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
 
-                    }else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.SUPPORTING_GRAPH_URI))){
+                    }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.SUPPORTING_GRAPH_URI))){
 
                         pubInfoGraphURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubGraphURI);
 
-                    }else if (nextLine[0].startsWith((OntoMatonNanopubTemplate.PROVENANCE_GRAPH_URI))) {
+                    }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PROVENANCE_GRAPH_URI))) {
 
                         provenanceGraphURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubGraphURI);
 
-                    }else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.ASSERTION)){
+                    }else if (nextLine[0].startsWith(NanoMatonTemplateSyntax.ASSERTION)){
 
                         stmt = parseStatement(nextLine, factory, assertionGraphURI);
 
-                    } else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.SUPPORTING)){
+                    } else if (nextLine[0].startsWith(NanoMatonTemplateSyntax.SUPPORTING)){
 
                         stmt = parseStatement(nextLine, factory, provenanceGraphURI);
 
-                    } else if (nextLine[0].startsWith(OntoMatonNanopubTemplate.PROVENANCE)){
+                    } else if (nextLine[0].startsWith(NanoMatonTemplateSyntax.PROVENANCE)){
 
                         stmt = parseStatement(nextLine, factory, pubInfoGraphURI);
 
