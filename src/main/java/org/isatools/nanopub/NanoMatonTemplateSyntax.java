@@ -12,14 +12,14 @@ public class NanoMatonTemplateSyntax {
 
     //elements from the schema
     public static final String ASSERTION = "assertion";
-    public static final String SUPPORTING = "supporting";
     public static final String PROVENANCE = "provenance";
+    public static final String PUB_INFO = "pubInfo";
 
 
     public static final String NANOPUB_GRAPH_URI = "nanopubGraphURI";
     public static final String NANOPUB_URI = "nanopubURI";
     public static final String ASSERTION_GRAPH_URI = "assertionGraphURI";
-    public static final String SUPPORTING_GRAPH_URI = "supportingGraphURI";
     public static final String PROVENANCE_GRAPH_URI = "provenanceGraphURI";
+    public static final String PUB_INFO_GRAPH_URI = "pubInfoGraphURI";
 
 }

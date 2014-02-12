@@ -42,20 +42,17 @@ public class OntoMaton2Nanopub {
      * @return
      * @throws MalformedNanopubException
      */
-    public Nanopub generateNanopub(String csvFilename) throws MalformedNanopubException {
-
-
+    public Nanopub generateNanopub(String csvFilename) throws MalformedNanopubException, MalformedNanoMatonTemplateException {
 
         ValueFactory factory = ValueFactoryImpl.getInstance();
 
         //default values for graphs URIs
-        nanopubGraphURI = factory.createURI("http://example.org/contexts/graph1");
-        assertionGraphURI = factory.createURI("http://example.org/G1");
-        provenanceGraphURI = factory.createURI("http://example.org/G2");
-        pubInfoGraphURI = factory.createURI("http://example.org/G4");
+        //nanopubGraphURI = factory.createURI("http://example.org/contexts/graph1");
+        //assertionGraphURI = factory.createURI("http://example.org/G1");
+        //provenanceGraphURI = factory.createURI("http://example.org/G2");
+        //pubInfoGraphURI = factory.createURI("http://example.org/G4");
 
         Collection<Statement> statementCollection = generateStmtsFromOntoMatonTemplate(csvFilename, factory);
-
         Nanopub nanopub = new NanopubImpl(statementCollection);
 
         return nanopub;
@@ -67,7 +64,8 @@ public class OntoMaton2Nanopub {
      * Reads the OntoMaton template for creating nanopublications.
      *
      */
-    private  Collection<Statement>  generateStmtsFromOntoMatonTemplate(String csvFilename, ValueFactory factory){
+    private  Collection<Statement>  generateStmtsFromOntoMatonTemplate(String csvFilename,
+                                                                       ValueFactory factory) throws MalformedNanoMatonTemplateException {
         Collection<Statement> statementCollection = new ArrayList<Statement>();
         try {
             CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
@@ -86,20 +84,32 @@ public class OntoMaton2Nanopub {
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.NANOPUB_URI))){
 
+                        if (nanopubGraphURI == null)
+                            throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
+
                         nanopubURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.ASSERTION_GRAPH_URI))){
 
+                        if (nanopubGraphURI == null)
+                            throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
+
                         assertionGraphURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
 
-                    }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.SUPPORTING_GRAPH_URI))){
+                    }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PUB_INFO_GRAPH_URI))){
+
+                        if (nanopubGraphURI == null)
+                            throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
 
                         pubInfoGraphURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubGraphURI);
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PROVENANCE_GRAPH_URI))) {
+
+                        if (nanopubGraphURI == null)
+                            throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
 
                         provenanceGraphURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubGraphURI);
@@ -108,11 +118,11 @@ public class OntoMaton2Nanopub {
 
                         stmt = parseStatement(nextLine, factory, assertionGraphURI);
 
-                    } else if (nextLine[0].startsWith(NanoMatonTemplateSyntax.SUPPORTING)){
+                    } else if (nextLine[0].startsWith(NanoMatonTemplateSyntax.PROVENANCE)){
 
                         stmt = parseStatement(nextLine, factory, provenanceGraphURI);
 
-                    } else if (nextLine[0].startsWith(NanoMatonTemplateSyntax.PROVENANCE)){
+                    } else if (nextLine[0].startsWith(NanoMatonTemplateSyntax.PUB_INFO)){
 
                         stmt = parseStatement(nextLine, factory, pubInfoGraphURI);
 
