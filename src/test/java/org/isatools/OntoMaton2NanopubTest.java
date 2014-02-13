@@ -1,5 +1,6 @@
 package org.isatools;
 
+import org.isatools.nanopub.MalformedNanoMatonTemplateException;
 import org.isatools.nanopub.OntoMaton2Nanopub;
 import org.junit.Test;
 import org.nanopub.MalformedNanopubException;
@@ -20,7 +21,7 @@ import org.openrdf.rio.RDFHandlerException;
 public class OntoMaton2NanopubTest {
 
     @Test
-    public void generateNanopubTest() throws MalformedNanopubException, RDFHandlerException {
+    public void generateNanopubTest() throws MalformedNanopubException, RDFHandlerException, MalformedNanoMatonTemplateException {
         //String csv = "/nanopub/ontomaton-nanopub.csv";
         String csv = "/nanopub/soapdenovo2-nanopub1.csv";
         System.out.println("csv="+csv);
