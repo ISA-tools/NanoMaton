@@ -23,7 +23,8 @@ public class OntoMaton2NanopubTest {
     @Test
     public void generateNanopubTest() throws MalformedNanopubException, RDFHandlerException, MalformedNanoMatonTemplateException {
         //String csv = "/nanopub/ontomaton-nanopub.csv";
-        String csv = "/nanopub/soapdenovo2-nanopub1.csv";
+        //String csv = "/nanopub/soapdenovo2-nanopub1.csv";
+        String csv = "/nanopub/nanopub1.csv";
         System.out.println("csv="+csv);
         String filepath = getClass().getResource(csv).getFile();
         OntoMaton2Nanopub ontoMaton2Nanopub = new OntoMaton2Nanopub();
@@ -35,6 +36,44 @@ public class OntoMaton2NanopubTest {
 
         System.out.println(nanopub.toString());
 
-        NanopubUtils.writeToStream(nanopub, System.out, RDFFormat.TRIG);
+        //NanopubUtils.writeToStream(nanopub, System.out, RDFFormat.TRIG);
+        NanopubUtils.writeToStream(nanopub, System.out, RDFFormat.TURTLE);
+
+//        if (nanopub instanceof NanopubImpl && !((NanopubImpl) nanopub).getNsPrefixes().isEmpty()) {
+//            NanopubImpl np = (NanopubImpl) nanopub;
+//
+//
+//            for (String p : np.getNsPrefixes()) {
+//                handler.handleNamespace(p, np.getNamespace(p));
+//            }
+//        }
+
+
+//        NanopubRdfHandler handler = new NanopubRdfHandler();
+//
+//        handler.startRDF();
+//        String s = nanopub.getUri().toString();
+//        if (nanopub instanceof NanopubImpl && !((NanopubImpl) nanopub).getNsPrefixes().isEmpty()) {
+//            NanopubImpl np = (NanopubImpl) nanopub;
+//            for (String p : np.getNsPrefixes()) {
+//                handler.handleNamespace(p, np.getNamespace(p));
+//            }
+//        } else {
+//            handler.handleNamespace("this", s);
+//            handler.handleNamespace("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+//            handler.handleNamespace("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
+//            handler.handleNamespace("rdfg", "http://www.w3.org/2004/03/trix/rdfg-1/");
+//            handler.handleNamespace("xsd", "http://www.w3.org/2001/XMLSchema#");
+//            handler.handleNamespace("owl", "http://www.w3.org/2002/07/owl#");
+//            handler.handleNamespace("dc", "http://purl.org/dc/terms/");
+//            handler.handleNamespace("pav", "http://swan.mindinformatics.org/ontologies/1.2/pav/");
+//            handler.handleNamespace("np", "http://www.nanopub.org/nschema#");
+//        }
+//        for (Statement st : getStatements(nanopub)) {
+//            handler.handleStatement(st);
+//        }
+//        handler.endRDF();
+
+
     }
 }

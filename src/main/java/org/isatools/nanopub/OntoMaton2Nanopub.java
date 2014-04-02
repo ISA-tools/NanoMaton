@@ -4,9 +4,11 @@ import au.com.bytecode.opencsv.CSVReader;
 import org.nanopub.MalformedNanopubException;
 import org.nanopub.Nanopub;
 import org.nanopub.NanopubImpl;
+import org.openrdf.model.Literal;
 import org.openrdf.model.Statement;
 import org.openrdf.model.URI;
 import org.openrdf.model.ValueFactory;
+import org.openrdf.model.impl.URIImpl;
 import org.openrdf.model.impl.ValueFactoryImpl;
 import org.openrdf.model.vocabulary.RDF;
 
@@ -28,12 +30,16 @@ import java.util.Map;
  */
 public class OntoMaton2Nanopub {
 
-   private static String HTTP = "http://";
+   private static final String HTTP = "http://";
+   private static final URI SUB_GRAPH_OF = new URIImpl("http://www.w3.org/2004/03/trix/rdfg-1/subGraphOf");
 
-   private URI nanopubURI=null, nanopubGraphURI=null, assertionGraphURI=null, provenanceGraphURI=null, pubInfoGraphURI=null;
+   private URI nanopubURI=null, nanopubGraphURI=null, assertionGraphURI=null, provenanceGraphURI=null, pubInfoGraphURI=null, parentGraphURI=null;
    private Map<String,URI> individualURImap = new HashMap<String, URI>();
 
-   public OntoMaton2Nanopub(){}
+    private Collection<Statement> statementCollection = null;
+    private Map<String, String> namespaces = null;
+
+    public OntoMaton2Nanopub(){}
 
     /**
      * Main method to use to generate a NanoPub from an OntoMaton template
@@ -52,8 +58,12 @@ public class OntoMaton2Nanopub {
         //provenanceGraphURI = factory.createURI("http://example.org/G2");
         //pubInfoGraphURI = factory.createURI("http://example.org/G4");
 
-        Collection<Statement> statementCollection = generateStmtsFromOntoMatonTemplate(csvFilename, factory);
-        Nanopub nanopub = new NanopubImpl(statementCollection);
+        statementCollection = new ArrayList<Statement>();
+        namespaces = new HashMap<String, String>();
+        namespaces.put("np", "http://www.nanopub.org/nschema#");
+
+        parseNanoMatonTemplate(csvFilename, factory);
+        Nanopub nanopub = new NanopubImpl(statementCollection, new ArrayList(namespaces.keySet()), namespaces);
 
         return nanopub;
     }
@@ -64,9 +74,8 @@ public class OntoMaton2Nanopub {
      * Reads the OntoMaton template for creating nanopublications.
      *
      */
-    private  Collection<Statement>  generateStmtsFromOntoMatonTemplate(String csvFilename,
-                                                                       ValueFactory factory) throws MalformedNanoMatonTemplateException {
-        Collection<Statement> statementCollection = new ArrayList<Statement>();
+    private  void parseNanoMatonTemplate(String csvFilename,
+                                         ValueFactory factory) throws MalformedNanoMatonTemplateException {
         try {
             CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
             Statement stmt;
@@ -81,6 +90,7 @@ public class OntoMaton2Nanopub {
                     if (nextLine[0].startsWith((NanoMatonTemplateSyntax.NANOPUB_GRAPH_URI))){
 
                         nanopubGraphURI = factory.createURI(nextLine[1]);
+                        namespaces.put("context", nanopubGraphURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.NANOPUB_URI))){
 
@@ -89,6 +99,7 @@ public class OntoMaton2Nanopub {
 
                         nanopubURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
+                        namespaces.put("this", nanopubURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.ASSERTION_GRAPH_URI))){
 
@@ -98,6 +109,8 @@ public class OntoMaton2Nanopub {
                         assertionGraphURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
 
+                        namespaces.put("assertion", assertionGraphURI.toString());
+
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PUB_INFO_GRAPH_URI))){
 
                         if (nanopubGraphURI == null)
@@ -105,6 +118,7 @@ public class OntoMaton2Nanopub {
 
                         pubInfoGraphURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubGraphURI);
+                        namespaces.put("pubInfo", pubInfoGraphURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PROVENANCE_GRAPH_URI))) {
 
@@ -113,6 +127,17 @@ public class OntoMaton2Nanopub {
 
                         provenanceGraphURI = factory.createURI(nextLine[1]);
                         stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubGraphURI);
+                        namespaces.put("provenance", provenanceGraphURI.toString());
+
+                    }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PARENT_GRAPH_URI))) {
+
+                        if (nanopubGraphURI == null)
+                            throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
+                        parentGraphURI = factory.createURI(nextLine[1]);
+
+                        stmt = factory.createStatement(nanopubGraphURI,SUB_GRAPH_OF,parentGraphURI);
+
+
 
                     }else if (nextLine[0].startsWith(NanoMatonTemplateSyntax.ASSERTION)){
 
@@ -125,6 +150,12 @@ public class OntoMaton2Nanopub {
                     } else if (nextLine[0].startsWith(NanoMatonTemplateSyntax.PUB_INFO)){
 
                         stmt = parseStatement(nextLine, factory, pubInfoGraphURI);
+
+                    } else if (nextLine[0].startsWith(NanoMatonTemplateSyntax.PREFIX)){
+
+
+                        if (!nextLine[1].equals("") && !nextLine[2].equals(""))
+                            namespaces.put(nextLine[1], nextLine[2]);
 
                     }
 
@@ -141,34 +172,44 @@ public class OntoMaton2Nanopub {
             ioex.printStackTrace();
         }
 
-        return statementCollection;
     }
 
 
     private Statement parseStatement(String[] line, ValueFactory factory, URI graphURI){
 
         URI subject = null, predicate = null, object = null;
+        Literal literalObject = null;
         Statement stmt = null;
 
         if (line[1].startsWith(HTTP))
             subject = factory.createURI(line[1]);
         else
-            subject = factory.createURI(nanopubURI+"/"+line[1]);
+            subject = factory.createURI(nanopubURI.toString(),line[1]);
+            //subject = factory.createURI("this:"+line[1]);
+            //subject = factory.createURI(nanopubURI+"/"+line[1]);
 
         if (line[2].startsWith(HTTP))
             predicate = factory.createURI(line[2]);
         else
-            predicate = factory.createURI(nanopubURI+"/"+line[1]);
-
+            predicate = factory.createURI(nanopubURI.toString(),line[2]);
+            //predicate = factory.createURI(nanopubURI+"/"+line[2]);
+            //predicate = factory.createURI("this:"+line[2]);
 
         if (line[3].startsWith(HTTP))
             object = factory.createURI(line[3]);
-        else
-            object = factory.createURI(nanopubURI+"/"+line[1]);
+        else if (line[3].startsWith("\"")) {
+            literalObject = factory.createLiteral(line[3]);
+        } else
+            object = factory.createURI(nanopubURI.toString(),line[3]);
+            //object = factory.createURI(nanopubURI+"/"+line[3]);
+            //object = factory.createURI("this:"+line[3]);
 
 
         if (subject!=null && predicate !=null && object !=null && graphURI!=null)
             stmt = factory.createStatement(subject, predicate, object, graphURI);
+
+        if (subject!=null && predicate !=null && literalObject !=null && graphURI!=null)
+            stmt = factory.createStatement(subject, predicate, literalObject, graphURI);
 
         return stmt;
     }
