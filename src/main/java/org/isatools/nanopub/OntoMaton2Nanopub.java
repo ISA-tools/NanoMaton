@@ -87,52 +87,57 @@ public class OntoMaton2Nanopub {
 
                 if (nextLine!=null){
 
-                    if (nextLine[0].startsWith((NanoMatonTemplateSyntax.NANOPUB_GRAPH_URI))){
+//                    if (nextLine[0].startsWith((NanoMatonTemplateSyntax.NANOPUB_GRAPH_URI))){
+//
+//                        nanopubGraphURI = factory.createURI(nextLine[1]);
+//                        namespaces.put("context", nanopubGraphURI.toString());
 
-                        nanopubGraphURI = factory.createURI(nextLine[1]);
-                        namespaces.put("context", nanopubGraphURI.toString());
+//                    }else
+                    if (nextLine[0].startsWith((NanoMatonTemplateSyntax.NANOPUB_URI))){
 
-                    }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.NANOPUB_URI))){
-
-                        if (nanopubGraphURI == null)
-                            throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
+                      //  if (nanopubGraphURI == null)
+                      //      throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
 
                         nanopubURI = factory.createURI(nextLine[1]);
-                        stmt = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
+                        //stmt = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubGraphURI);
+                        stmt = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubURI);
                         namespaces.put("this", nanopubURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.ASSERTION_GRAPH_URI))){
 
-                        if (nanopubGraphURI == null)
-                            throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
+                        //if (nanopubGraphURI == null)
+                        //    throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
 
                         assertionGraphURI = factory.createURI(nextLine[1]);
-                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
+                        //stmt = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubGraphURI);
+                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubURI);
 
                         namespaces.put("assertion", assertionGraphURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PUB_INFO_GRAPH_URI))){
 
-                        if (nanopubGraphURI == null)
-                            throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
+                        //if (nanopubGraphURI == null)
+                        //    throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
 
                         pubInfoGraphURI = factory.createURI(nextLine[1]);
-                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubGraphURI);
+                        //stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubGraphURI);
+                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubURI);
                         namespaces.put("pubInfo", pubInfoGraphURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PROVENANCE_GRAPH_URI))) {
 
-                        if (nanopubGraphURI == null)
-                            throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
+                        //if (nanopubGraphURI == null)
+                        //    throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
 
                         provenanceGraphURI = factory.createURI(nextLine[1]);
-                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubGraphURI);
+                        //stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubGraphURI);
+                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubURI);
                         namespaces.put("provenance", provenanceGraphURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PARENT_GRAPH_URI))) {
 
-                        if (nanopubGraphURI == null)
-                            throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
+                        //if (nanopubGraphURI == null)
+                        //    throw new MalformedNanoMatonTemplateException("The nanopubGraphURI must be defined first");
                         parentGraphURI = factory.createURI(nextLine[1]);
 
                         stmt = factory.createStatement(nanopubGraphURI,SUB_GRAPH_OF,parentGraphURI);

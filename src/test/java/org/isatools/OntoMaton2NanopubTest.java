@@ -9,6 +9,11 @@ import org.nanopub.NanopubUtils;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFHandlerException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 
 /**
  * Created by the ISATeam.
@@ -19,6 +24,31 @@ import org.openrdf.rio.RDFHandlerException;
  * @author <a href="mailto:alejandra.gonzalez.beltran@gmail.com">Alejandra Gonzalez-Beltran</a>
  */
 public class OntoMaton2NanopubTest {
+
+    @Test
+    public void generateNanopubsTest() throws MalformedNanopubException, MalformedNanoMatonTemplateException, RDFHandlerException, FileNotFoundException, IOException {
+
+        for (int i=1; i<9; i++) {
+            String csv = "/nanopub/nanopub"+i+".csv";
+
+            System.out.println("csv="+csv);
+            String filepath = getClass().getResource(csv).getFile();
+            OntoMaton2Nanopub ontoMaton2Nanopub = new OntoMaton2Nanopub();
+
+            Nanopub nanopub = ontoMaton2Nanopub.generateNanopub(filepath);
+
+            System.out.println(nanopub.toString());
+
+            File file = new File("nanopub"+i+".trig");
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+            FileOutputStream oFile = new FileOutputStream(file, false);
+
+            NanopubUtils.writeToStream(nanopub, oFile, RDFFormat.TRIG);
+        }
+
+    }
 
     @Test
     public void generateNanopubTest() throws MalformedNanopubException, RDFHandlerException, MalformedNanoMatonTemplateException {
