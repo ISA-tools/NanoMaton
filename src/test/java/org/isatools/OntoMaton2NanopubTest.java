@@ -1,7 +1,7 @@
 package org.isatools;
 
-import org.isatools.nanopub.MalformedNanoMatonTemplateException;
-import org.isatools.nanopub.OntoMaton2Nanopub;
+import org.isatools.nanomaton.MalformedNanoMatonTemplateException;
+import org.isatools.nanomaton.OntoMaton2Nanopub;
 import org.junit.Test;
 import org.nanopub.MalformedNanopubException;
 import org.nanopub.Nanopub;

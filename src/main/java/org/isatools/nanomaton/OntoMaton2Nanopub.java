@@ -1,4 +1,4 @@
-package org.isatools.nanopub;
+package org.isatools.nanomaton;
 
 import au.com.bytecode.opencsv.CSVReader;
 import org.nanopub.MalformedNanopubException;

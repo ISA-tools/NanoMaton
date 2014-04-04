@@ -1,4 +1,4 @@
-package org.isatools.nanopub;
+package org.isatools.nanomaton;
 
 /**
  * Created by the ISATeam.
