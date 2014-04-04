@@ -3,7 +3,7 @@ nanopubURI,http://w3id.org/isa/soapdenovo2/nanopub/5/,,,
 assertionGraphURI,http://w3id.org/isa/soapdenovo2/nanopub/5/assertion,,,
 provenanceGraphURI,http://w3id.org/isa/soapdenovo2/nanopub/5/provenance,,,
 pubInfoGraphURI,http://w3id.org/isa/soapdenovo2/nanopub/5/pubInfo,,,
-parentGraphIRI,http://w3id.org/isa/soapdenovo2/nanopubs,,,
+parentGraphURI,http://w3id.org/isa/soapdenovo2/nanopubs,,,
 ,,,,
 prefix,rdf,http://www.w3.org/1999/02/22-rdf-syntax-ns#,,
 prefix,sio,http://semanticscience.org/resource/SIO_,,
@@ -19,8 +19,8 @@ assertion,contigN50_v2,http://purl.obolibrary.org/obo/IAO_0000039,http://purl.ob
 assertion,contigN50_v2,http://purl.obolibrary.org/obo/IAO_0000136,http://purl.obolibrary.org/obo/OBI_0001941,
 assertion,contigN50_v2,http://purl.obolibrary.org/obo/OBI_0000312,http://w3id.org/isa/soapdenovo2/assay_protocol_ref/14,
 assertion,contigN50_v2,http://purl.obolibrary.org/obo/BFO_0000050,http://w3id.org/isa/soapdenovo2/derived_data_file/4,
-assertion,contigN50 _v1,http://www.w3.org/1999/02/22-rdf-syntax-ns#,http://purl.obolibrary.org/obo/OBI_0001941,
-assertion,contigN50 _v1,http://purl.obolibrary.org/obo/IAO_0000004,148.6,xsd:float
+assertion,contigN50_v1,http://www.w3.org/1999/02/22-rdf-syntax-ns#,http://purl.obolibrary.org/obo/OBI_0001941,
+assertion,contigN50_v1,http://purl.obolibrary.org/obo/IAO_0000004,148.6,xsd:float
 assertion,contigN50_v1,http://purl.obolibrary.org/obo/IAO_0000039,http://purl.obolibrary.org/obo/UO_0000328,
 assertion,contigN50_v1,http://purl.obolibrary.org/obo/IAO_0000136,http://purl.obolibrary.org/obo/OBI_0001941,
 assertion,contigN50_v1,http://purl.obolibrary.org/obo/IAO_0000136,genome_assembly1,
@@ -28,7 +28,7 @@ assertion,contigN50_v1,http://purl.obolibrary.org/obo/OBI_0000312,http://w3id.or
 assertion,contigN50_v1,http://purl.obolibrary.org/obo/BFO_0000050,http://w3id.org/isa/soapdenovo2/derived_data_file/3,
 assertion,contigN50_fold_change,http://www.w3.org/1999/02/22-rdf-syntax-ns#,http://purl.obolibrary.org/obo/STATO_0000169,
 assertion,contigN50_fold_change,http://purl.obolibrary.org/obo/STATO_0000101,contigN50_v2,
-assertion,contigN50_fold_change,http://purl.obolibrary.org/obo/STATO_0000259,contigN50 _v1,
+assertion,contigN50_fold_change,http://purl.obolibrary.org/obo/STATO_0000259,contigN50_v1,
 assertion,contigN50_fold_change,http://purl.obolibrary.org/obo/IAO_0000004,0.66,xsd:float
 assertion,genome_assembly2,http://www.w3.org/1999/02/22-rdf-syntax-ns#,http://purl.obolibrary.org/obo/SO_0000353,
 assertion,genome_assembly1,http://www.w3.org/1999/02/22-rdf-syntax-ns#,http://purl.obolibrary.org/obo/SO_0000353,
