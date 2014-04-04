@@ -15,8 +15,6 @@ public class NanoMatonTemplateSyntax {
     public static final String PROVENANCE = "provenance";
     public static final String PUB_INFO = "pubInfo";
 
-
-    public static final String NANOPUB_GRAPH_URI = "nanopubGraphURI";
     public static final String NANOPUB_URI = "nanopubURI";
     public static final String ASSERTION_GRAPH_URI = "assertionGraphURI";
     public static final String PROVENANCE_GRAPH_URI = "provenanceGraphURI";
