@@ -7,4 +7,6 @@ A Google spreadsheets template for NanoMaton can be found [here](https://drive.g
 
 For an example on how to use NanoMaton to generate nanopublications, please see our [SOAPdenovo2 case study](http://isa-tools.github.io/soapdenovo2/), for which the completed NanoMaton template for 8 nanopublications can be found [here](https://docs.google.com/spreadsheet/ccc?key=0AmtKthYRS0f5dHFldVQ5cVRHT3lxU3FWUUlhNEZ5YkE&usp=drive_web#gid=7).
 
+NanoMaton is licensed under the Mozilla Public License (MPL) version 1.1/GPL version 2.0/LGPL version 2.1
+
 
