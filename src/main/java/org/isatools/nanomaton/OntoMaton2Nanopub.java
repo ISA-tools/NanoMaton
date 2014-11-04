@@ -148,6 +148,14 @@ public class OntoMaton2Nanopub {
     }
 
 
+    /**
+     * Parse a line in the OntoMaton template as an RDF Statement
+     *
+     * @param line
+     * @param factory
+     * @param graphURI
+     * @return
+     */
     private Statement parseStatement(String[] line, ValueFactory factory, URI graphURI){
 
         URI subject = null, predicate = null, object = null;
@@ -156,8 +164,10 @@ public class OntoMaton2Nanopub {
 
         if (line[1].startsWith(HTTP))
             subject = factory.createURI(line[1]);
-        else
-            subject = factory.createURI(nanopubURI.toString(),line[1]);
+        else {
+            subject = factory.createURI(nanopubURI.toString(), line[1]);
+            individualURImap.put(line[1], subject);
+        }
 
         if (line[2].startsWith(HTTP))
             predicate = factory.createURI(line[2]);
@@ -166,10 +176,17 @@ public class OntoMaton2Nanopub {
 
         if (line[3].startsWith(HTTP))
             object = factory.createURI(line[3]);
-        else if (line[3].startsWith("\"")) {
-            literalObject = factory.createLiteral(line[3]);
-        } else
-            object = factory.createURI(nanopubURI.toString(),line[3]);
+        else {
+            //it is either an object previously defined (see list of subjects) or a literal
+            object = individualURImap.get(line[3]);
+
+            if (object==null && line[4]!=null && !line[4].equals("")) {
+                literalObject = factory.createLiteral(line[3], line[4]);
+            }else {
+                object = factory.createURI(nanopubURI.toString(), line[3]);
+                individualURImap.put(line[3], object);
+            }
+        }
 
         if (subject!=null && predicate !=null && object !=null && graphURI!=null)
             stmt = factory.createStatement(subject, predicate, object, graphURI);
