@@ -25,9 +25,7 @@ import java.io.IOException;
  */
 public class OntoMaton2NanopubTest {
 
-    @Test
-    public void generateNanopubsTest() throws MalformedNanopubException, MalformedNanoMatonTemplateException, RDFHandlerException, FileNotFoundException, IOException {
-
+    private void generateNanopub(String extension, RDFFormat format) throws MalformedNanopubException, MalformedNanoMatonTemplateException, RDFHandlerException, FileNotFoundException, IOException {
         for (int i=1; i<9; i++) {
             String csv = "/nanopub/nanopub"+i+".csv";
 
@@ -39,16 +37,28 @@ public class OntoMaton2NanopubTest {
 
             System.out.println(nanopub.toString());
 
-            File file = new File("nanopub"+i+".trig");
+            File file = new File("nanopub"+i+extension);
             if(!file.exists()) {
                 file.createNewFile();
             }
             FileOutputStream oFile = new FileOutputStream(file, false);
 
-            NanopubUtils.writeToStream(nanopub, oFile, RDFFormat.TRIG);
+            NanopubUtils.writeToStream(nanopub, oFile, format);
         }
-
     }
+
+
+    @Test
+    public void generateNanopubsTRIGTest() throws MalformedNanopubException, MalformedNanoMatonTemplateException, RDFHandlerException, FileNotFoundException, IOException {
+        generateNanopub(".trig", RDFFormat.TRIG);
+    }
+
+
+    @Test
+    public void generateNanopubsTURTLETest() throws MalformedNanopubException, MalformedNanoMatonTemplateException, RDFHandlerException, FileNotFoundException, IOException {
+        generateNanopub(".ttl", RDFFormat.TURTLE);      
+    }
+
 
     @Test
     public void generateNanopubTest() throws MalformedNanopubException, RDFHandlerException, MalformedNanoMatonTemplateException {
