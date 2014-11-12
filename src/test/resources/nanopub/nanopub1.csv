@@ -1,4 +1,4 @@
-statement,the contig N50 of the ‘YH genome’ is 1.49-fold longer for SOAPdenovo2 than for SOAPdenovo1 over the human data,,,
+statement,the contig N50 of the human data (‘YH genome’) is 1.49-fold longer for SOAPdenovo2 than for SOAPdenovo1,,,
 nanopubURI,http://w3id.org/isa/soapdenovo2/nanopub/1/,,,
 assertionGraphURI,http://w3id.org/isa/soapdenovo2/nanopub/1/assertion,,,
 provenanceGraphURI,http://w3id.org/isa/soapdenovo2/nanopub/1/provenance,,,
@@ -41,9 +41,9 @@ provenance,assertion,http://www.w3.org/ns/prov#wasAttributedTo,http://orcid.org/
 provenance,assertion,http://www.w3.org/ns/prov#wasAttributedTo,http://orcid.org/0000-0003-4676-8587,
 provenance,assertion,http://purl.org/dc/terms/bibliographicCitation,http://dx.doi.org/10.1186/2047-217X-1-18,
 ,,,,
-pubInfo,this,http://purl.org/dc/terms/hasVersion,"""1""",xsd:double
+pubInfo,this,http://purl.org/dc/terms/hasVersion,1,xsd:double
 pubInfo,this,http://purl.org/dc/terms/created,<date>,
 pubInfo,this,http://purl.org/dc/terms/creator,http://orcid.org/0000-0003-3499-8262,
 pubInfo,this,http://purl.org/dc/terms/creator,http://orcid.org/0000-0001-9853-5668,
-pubInfo,this,http://purl.org/dc/terms/rightsHolder,"""http://isa-tools.org""",
+pubInfo,this,http://purl.org/dc/terms/rightsHolder,http://isa-tools.org,
 pubInfo,this,http://purl.org/dc/terms/bibliographicCitation,http://dx.doi.org/10.1186/2047-217X-1-18,

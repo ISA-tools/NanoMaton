@@ -26,7 +26,7 @@ import java.io.IOException;
 public class OntoMaton2NanopubTest {
 
     private void generateNanopub(String extension, RDFFormat format) throws MalformedNanopubException, MalformedNanoMatonTemplateException, RDFHandlerException, FileNotFoundException, IOException {
-        for (int i=1; i<9; i++) {
+        for (int i=1; i<10; i++) {
             String csv = "/nanopub/nanopub"+i+".csv";
 
             System.out.println("csv="+csv);
@@ -56,7 +56,7 @@ public class OntoMaton2NanopubTest {
 
     @Test
     public void generateNanopubsTURTLETest() throws MalformedNanopubException, MalformedNanoMatonTemplateException, RDFHandlerException, FileNotFoundException, IOException {
-        generateNanopub(".ttl", RDFFormat.TURTLE);      
+        generateNanopub(".ttl", RDFFormat.TURTLE);
     }
 
 

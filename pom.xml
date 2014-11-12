@@ -8,6 +8,17 @@
   <name>nanomaton</name>
   <url>http://maven.apache.org</url>
 
+    <developers>
+        <developer>
+            <id>agbeltran</id>
+            <name>Alejandra Gonzalez-Beltran</name>
+            <email>alejandra.gonzalez.beltran@gmail.com</email>
+            <url>http://oerc.ox.ac.uk/people/alejandra</url>
+            <organization>OeRC, University of Oxford</organization>
+            <organizationUrl>http://oerc.ox.ac.uk/</organizationUrl>
+        </developer>
+    </developers>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -50,8 +61,7 @@
         <dependency>
             <groupId>org.nanopub</groupId>
             <artifactId>nanopub</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
+            <version>1.4</version>
         </dependency>
 
         <dependency>

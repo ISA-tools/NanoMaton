@@ -33,7 +33,7 @@ public class OntoMaton2Nanopub {
    private static final String HTTP = "http://";
    private static final URI SUB_GRAPH_OF = new URIImpl("http://www.w3.org/2004/03/trix/rdfg-1/subGraphOf");
 
-   private URI nanopubURI=null, assertionGraphURI=null, provenanceGraphURI=null, pubInfoGraphURI=null, parentGraphURI=null;
+   private URI headURI=null, nanopubURI=null, assertionGraphURI=null, provenanceGraphURI=null, pubInfoGraphURI=null, parentGraphURI=null;
    private Map<String,URI> individualURImap = new HashMap<String, URI>();
 
     private Collection<Statement> statementCollection = null;
@@ -84,31 +84,33 @@ public class OntoMaton2Nanopub {
                     if (nextLine[0].startsWith((NanoMatonTemplateSyntax.NANOPUB_URI))){
 
                         nanopubURI = factory.createURI(nextLine[1]);
-                        stmt = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, nanopubURI);
+                        headURI = factory.createURI(nextLine[1]+"head");
+
+                        stmt = factory.createStatement(nanopubURI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, headURI);
                         namespaces.put("this", nanopubURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.ASSERTION_GRAPH_URI))){
 
                         assertionGraphURI = factory.createURI(nextLine[1]);
-                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, nanopubURI);
+                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, headURI);
                         namespaces.put("assertion", assertionGraphURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PUB_INFO_GRAPH_URI))){
 
                         pubInfoGraphURI = factory.createURI(nextLine[1]);
-                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, nanopubURI);
+                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, headURI);
                         namespaces.put("pubInfo", pubInfoGraphURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PROVENANCE_GRAPH_URI))) {
 
                         provenanceGraphURI = factory.createURI(nextLine[1]);
-                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, nanopubURI);
+                        stmt = factory.createStatement(nanopubURI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, headURI);
                         namespaces.put("provenance", provenanceGraphURI.toString());
 
                     }else if (nextLine[0].startsWith((NanoMatonTemplateSyntax.PARENT_GRAPH_URI))) {
 
                         parentGraphURI = factory.createURI(nextLine[1]);
-                        stmt = factory.createStatement(nanopubURI,SUB_GRAPH_OF,parentGraphURI, nanopubURI);
+                        stmt = factory.createStatement(nanopubURI,SUB_GRAPH_OF,parentGraphURI, headURI);
                         namespaces.put("rdfg","http://www.w3.org/2004/03/trix/rdfg-1/");
 
 
@@ -165,7 +167,11 @@ public class OntoMaton2Nanopub {
         if (line[1].startsWith(HTTP))
             subject = factory.createURI(line[1]);
         else {
-            subject = factory.createURI(nanopubURI.toString(), line[1]);
+
+            if (line[1].equals("this"))
+                subject = factory.createURI(nanopubURI.toString());
+            else
+                subject = factory.createURI(nanopubURI.toString(), line[1]);
             individualURImap.put(line[1], subject);
         }
 

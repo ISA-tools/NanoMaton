@@ -18,9 +18,9 @@ assertion,peak_memory_consumption1,http://www.w3.org/1999/02/22-rdf-syntax-ns#,h
 assertion,peak_memory_consumption2,http://www.w3.org/1999/02/22-rdf-syntax-ns#,http://purl.obolibrary.org/obo/OBI_0001877,
 assertion,peak_memory_consumption1,http://purl.obolibrary.org/obo/IAO_0000136,http://w3id.org/isa/soapdenovo2/assay_protocol_ref/11,
 assertion,peak_memory_consumption2,http://purl.obolibrary.org/obo/IAO_0000136,http://w3id.org/isa/soapdenovo2/assay_protocol_ref/10,
-assertion,peak_memory_consumption1,http://purl.obolibrary.org/obo/IAO_0000004,"""107""",xsd:int
+assertion,peak_memory_consumption1,http://purl.obolibrary.org/obo/IAO_0000004,107,xsd:int
 assertion,peak_memory_consumption1,http://purl.obolibrary.org/obo/IAO_0000039,gigabytes,
-assertion,peak_memory_consumption2,http://purl.obolibrary.org/obo/IAO_0000004,"""35""",xsd:int
+assertion,peak_memory_consumption2,http://purl.obolibrary.org/obo/IAO_0000004,35,xsd:int
 assertion,peak_memory_consumption2,http://purl.obolibrary.org/obo/IAO_0000039,gigabytes,
 assertion,peak_memory_consumption2,http://purl.obolibrary.org/obo/BFO_0000050,http://w3id.org/isa/soapdenovo2/derived_data_file/2,
 assertion,peak_memory_consumption1,http://purl.obolibrary.org/obo/BFO_0000050,http://w3id.org/isa/soapdenovo2/derived_data_file/2,
@@ -31,9 +31,9 @@ provenance,assertion,http://www.w3.org/ns/prov#wasAttributedTo,http://orcid.org/
 provenance,assertion,http://www.w3.org/ns/prov#wasAttributedTo,http://orcid.org/0000-0003-4676-8587,
 provenance,assertion,http://purl.org/dc/terms/bibliographicCitation,http://dx.doi.org/10.1186/2047-217X-1-18,
 ,,,,
-pubInfo,this,http://purl.org/dc/terms/hasVersion,"""1""",xsd:double
+pubInfo,this,http://purl.org/dc/terms/hasVersion,1,xsd:double
 pubInfo,this,http://purl.org/dc/terms/created,<date>,
 pubInfo,this,http://purl.org/dc/terms/creator,http://orcid.org/0000-0003-3499-8262,
 pubInfo,this,http://purl.org/dc/terms/creator,http://orcid.org/0000-0001-9853-5668,
-pubInfo,this,http://purl.org/dc/terms/rightsHolder,"""http://isa-tools.org""",
+pubInfo,this,http://purl.org/dc/terms/rightsHolder,http://isa-tools.org,
 pubInfo,this,http://purl.org/dc/terms/bibliographicCitation,http://dx.doi.org/10.1186/2047-217X-1-18,
