@@ -26,10 +26,10 @@ import java.io.IOException;
 public class OntoMaton2NanopubTest {
 
     private void generateNanopub(String extension, RDFFormat format) throws MalformedNanopubException, MalformedNanoMatonTemplateException, RDFHandlerException, FileNotFoundException, IOException {
-        for (int i=1; i<10; i++) {
-            String csv = "/nanopub/nanopub"+i+".csv";
+        for (int i = 1; i < 10; i++) {
+            String csv = "/nanopub/nanopub" + i + ".csv";
 
-            System.out.println("csv="+csv);
+            System.out.println("csv=" + csv);
             String filepath = getClass().getResource(csv).getFile();
             OntoMaton2Nanopub ontoMaton2Nanopub = new OntoMaton2Nanopub();
 
@@ -37,8 +37,8 @@ public class OntoMaton2NanopubTest {
 
             System.out.println(nanopub.toString());
 
-            File file = new File("nanopub"+i+extension);
-            if(!file.exists()) {
+            File file = new File("nanopub" + i + extension);
+            if (!file.exists()) {
                 file.createNewFile();
             }
             FileOutputStream oFile = new FileOutputStream(file, false);
@@ -65,7 +65,7 @@ public class OntoMaton2NanopubTest {
         //String csv = "/nanopub/ontomaton-nanopub.csv";
         //String csv = "/nanopub/soapdenovo2-nanopub1.csv";
         String csv = "/nanopub/nanopub1.csv";
-        System.out.println("csv="+csv);
+        System.out.println("csv=" + csv);
         String filepath = getClass().getResource(csv).getFile();
         OntoMaton2Nanopub ontoMaton2Nanopub = new OntoMaton2Nanopub();
 

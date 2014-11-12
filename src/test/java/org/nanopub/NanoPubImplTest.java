@@ -73,7 +73,7 @@ public class NanoPubImplTest {
 
         URI pubInfoGraphURI = factory.createURI("http://example.org/G4");
 
-        Statement nanopub1Statement1 = factory.createStatement(nanopub1URI, RDF.TYPE ,Nanopub.NANOPUB_TYPE_URI, context);
+        Statement nanopub1Statement1 = factory.createStatement(nanopub1URI, RDF.TYPE, Nanopub.NANOPUB_TYPE_URI, context);
         Statement nanopub1Statement2 = factory.createStatement(nanopub1URI, Nanopub.HAS_ASSERTION_URI, assertionGraphURI, context);
         Statement nanopub1Statement3 = factory.createStatement(nanopub1URI, Nanopub.HAS_PROVENANCE_URI, provenanceGraphURI, context);
         Statement nanopub1Statement4 = factory.createStatement(nanopub1URI, Nanopub.HAS_PUBINFO_URI, pubInfoGraphURI, context);
@@ -95,10 +95,9 @@ public class NanoPubImplTest {
 
         Nanopub nanopub1 = new NanopubImpl(statements);
 
-        System.out.println("Nanopub1= "+nanopub1);
+        System.out.println("Nanopub1= " + nanopub1);
 
     }
-
 
 
 }
